@@ -1,0 +1,102 @@
+#logo-png {
+    width: 2.5em;
+}
+
+#search{
+  width: 15em;
+  border-width: 1px;
+  border-radius: 4px;
+  border-color: #bdc3c7;
+  outline: none;
+  padding: 0.5em;
+}
+
+.search-results-card {
+  width: 25em;
+  height: auto;
+  background-color: #fff;
+  padding: 0.4em;
+  margin-top: 0.25em;
+  border: 1px solid #bdc3c7;
+  border-radius: 4px;
+  display: block;
+}
+
+.body-container {
+  margin-top: 2em;
+
+}
+
+/* individual results*/
+.padded{
+  padding: 1em;
+}
+
+.padded, .stock-header, .follow-button {
+  display: inline;
+}
+
+.follow-button {
+  float: right;
+}
+
+.stock-header {
+  float:left;
+}
+/* profile card*/
+.card{
+  position: relative;
+
+}
+
+/* unfollow icon for stocks */
+.unfollow-icon {
+  margin-left: 222px !important;
+  margin-top: -10px !important;
+}
+
+/* search results */
+.results {
+  padding: 2.5em 3.5em 2.5em 3.5em;
+  background-color: white;
+  position: relative;
+  z-index: 99;
+  border: 1px solid #ddd;
+}
+
+.results:first-child{
+  margin-top: 0.70em;
+  border-top-left-radius: 0.5em;
+  border-top-right-radius: 0.5em;
+}
+
+.results:last-child{
+  border-bottom-left-radius: 0.5em;
+  border-bottom-right-radius: 0.5em;
+  box-shadow: 0px 1px 0px 0px rgba( 1, 0, 0, 0.1);
+}
+
+/* the collective results positions ontop of everything else*/
+.hover {
+  height: 2.5em;
+  width: 32em;
+
+  border-bottom-left-radius: 0.5em;
+  border-bottom-right-radius: 0.5em;
+}
+
+.following-list h5{
+  text-align: center;
+}
+
+.ui.card {
+  padding: 5px;
+}
+
+.link {
+  cursor: pointer;
+}
+
+.padding {
+  padding: 25px;
+}
