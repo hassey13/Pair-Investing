@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Icon, Button } from 'semantic-ui-react'
 
-import { followStock } from '../actions/stockActions'
+import { followStock } from '../../actions/stockActions'
 
 class SearchResults extends Component {
   constructor() {

@@ -18,6 +18,6 @@ export const stockAdapter = {
   },
 
   unfollowStock: (params) => {
-    return axios.post('unfollow', params).then(response => response.data)
+    return axios.post('unfollow_stock', params).then(response => response.data)
   }
 }

@@ -14,7 +14,7 @@ export default class FollowingList extends Component {
       return ( <Loading/> )
     }
 
-    const followingList = user.user_following
+    const followingList = user.friends
 
     if ( followingList === undefined || followingList.length === 0 || user.hasOwnProperty('no_friends') ) {
       return (

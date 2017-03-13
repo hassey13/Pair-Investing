@@ -3,7 +3,7 @@ import { browserHistory } from 'react-router'
 import { connect } from 'react-redux'
 import { Button, Form, Icon } from 'semantic-ui-react'
 
-import { login } from '../actions/userActions'
+import { login } from '../../actions/userActions'
 
 class LoginForm extends Component {
   constructor() {

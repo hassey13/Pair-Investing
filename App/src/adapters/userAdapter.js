@@ -68,7 +68,7 @@ export const userAdapter = {
   },
 
   followUser: (username) => {
-    return axios.post('/following', username)
+    return axios.post('/follow_user', username)
       .then((response) => {
         return response.data
       }).catch((error) => {

@@ -4,8 +4,8 @@ import { connect } from 'react-redux'
 import SearchResults from './SearchResults'
 import UserSearchResults from './UserSearchResults'
 
-import { queryStocks } from '../actions/stockActions'
-import { fetchAllUsers } from '../actions/userActions'
+import { queryStocks } from '../../actions/stockActions'
+import { fetchAllUsers } from '../../actions/userActions'
 
 class Search extends React.Component {
   constructor() {

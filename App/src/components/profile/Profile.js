@@ -2,15 +2,14 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
 import IndividualProfileCard from './IndividualProfileCard'
-import UserStocks from './UserStocks'
+import UserStocks from '../stocks/UserStocks'
 import FollowingList from './FollowingList'
 
-import { fetchUser, fetchOtherUser } from '../actions/userActions'
+import { fetchUser, fetchOtherUser } from '../../actions/userActions'
 
 import { Grid } from 'semantic-ui-react'
 
-// import '../../public/stylesheets/master.css'
-// import '../../public/feather.png'
+import '../../../public/stylesheets/master.css'
 
 class Profile extends Component {
 

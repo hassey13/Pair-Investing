@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 
 import { Card, Button, Icon } from 'semantic-ui-react'
 import { connect } from 'react-redux'
-import { unfollowStock } from '../actions/stockActions'
+import { unfollowStock } from '../../actions/stockActions'
 
 class LinkedStockCard extends Component {
   constructor() {
@@ -25,7 +25,7 @@ class LinkedStockCard extends Component {
         <Card>
           <div></div>
           <Icon className='circular unfollow-icon' onClick={this.handleUnfollow} corner name='delete' inverted color='red' />
-          
+
           <Card.Content onClick={this.handleClick}>
             <Card.Header as='h5'>{this.props.stock.ticker}</Card.Header>
             <Card.Description >{this.props.stock.company_name}</Card.Description>

@@ -3,7 +3,7 @@ import { browserHistory } from 'react-router'
 import { connect } from 'react-redux'
 import { Form, Button, Icon } from 'semantic-ui-react'
 
-import { createUser } from '../actions/userActions'
+import { createUser } from '../../actions/userActions'
 
 class SignUpForm extends Component {
   constructor() {

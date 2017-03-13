@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Card } from 'semantic-ui-react'
 
-import LinkedStockCard from './LinkedStockCard'
+import LinkedStockCard from '../stocks/LinkedStockCard'
 import Loading from '../Loading'
 
 

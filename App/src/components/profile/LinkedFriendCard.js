@@ -3,7 +3,7 @@ import { List, Image } from 'semantic-ui-react'
 import { connect } from 'react-redux'
 import { browserHistory } from 'react-router'
 
-import { fetchOtherUser } from '../actions/userActions'
+import { fetchOtherUser } from '../../actions/userActions'
 
 class LinkedFriendCard extends Component {
 

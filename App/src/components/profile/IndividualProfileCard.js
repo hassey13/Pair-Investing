@@ -3,9 +3,9 @@ import { connect } from 'react-redux'
 import { browserHistory } from 'react-router'
 import { Card, Button, Image } from 'semantic-ui-react'
 
-import Loading from './Loading.js'
+import Loading from '../Loading'
 
-import { followUser, unfollowUser } from '../actions/userActions'
+import { followUser, unfollowUser } from '../../actions/userActions'
 
 class IndividualProfileCard extends Component {
 
@@ -28,7 +28,9 @@ class IndividualProfileCard extends Component {
 
 
     if ( this.props.currentUser !== 0 ) currentUser = this.props.currentUser
+
     if ( user === undefined || user.length === 0 ) return <Loading />
+
     if (user.bio === undefined ) {
       user.bio = `${ user.first_name } is an awesome person.`
     }
@@ -51,8 +53,8 @@ class IndividualProfileCard extends Component {
       )
     }
 
-    for (var i = 0; i < currentUser.user_following.length; i++) {
-      if ( currentUser.user_following[i].username === user.username) {
+    for (var i = 0; i < currentUser.friends.length; i++) {
+      if ( currentUser.friends[i].username === user.username) {
         return (
           <Card className="card">
             <Image src='http://semantic-ui.com/images/avatar/large/elliot.jpg' />

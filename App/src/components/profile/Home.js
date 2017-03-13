@@ -7,7 +7,7 @@ import News from './News'
 import FollowingList from './FollowingList'
 import UserStocks from '../stocks/UserStocks'
 
-import { fetchUser } from '../actions/userActions'
+import { fetchUser } from '../../actions/userActions'
 
 
 class Home extends Component {
