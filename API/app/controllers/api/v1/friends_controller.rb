@@ -20,8 +20,7 @@ class Api::V1::FriendsController < ApplicationController
   def destroy
     @user = get_current_user
     @target_user = User.find_by(username: params[:username])
-    # binding.pry
-    # @user.friends.find { |user| user.id === @target_user.id }
+    @user.friends.delete(User.find(@target_user.id)) if !!@target_user
     render json: @user.friends
   end
 
