@@ -68,7 +68,7 @@ export const userAdapter = {
   },
 
   followUser: (username) => {
-    return axios.post('/follow_user', username)
+    return axios.post('/follow_user', {username: username})
       .then((response) => {
         return response.data
       }).catch((error) => {
@@ -79,7 +79,7 @@ export const userAdapter = {
   },
 
   unfollowUser: (username) => {
-    return axios.post('/unfollow_user', username)
+    return axios.post('/unfollow_user', {username: username})
       .then((response) => {
         return response.data
       }).catch((error) => {

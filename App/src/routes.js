@@ -7,7 +7,6 @@ import Profile from './components/profile/Profile'
 import LogIn from './components/sessions/LogIn'
 import SignUp from './components/sessions/SignUp'
 import Edit from './components/profile/Edit'
-import UserStocks from './components/stocks/UserStocks'
 
 export default (
   <Route path='/' component={ App }>

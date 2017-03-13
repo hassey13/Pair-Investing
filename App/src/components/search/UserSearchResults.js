@@ -16,7 +16,7 @@ class UserSearchResults extends Component {
   render() {
     return (
       <div className="results" onClick={ this.handleUserClick }>
-        <div className="padded" >
+        <div className="padded link" >
           <p className="stock-header" >
             {`${ this.props.user.first_name } ${ this.props.user.last_name }`}
             <br/>

@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
-import { connect } from 'react-redux'
+// import { connect } from 'react-redux'
+
 import LinkedStockCard from './LinkedStockCard'
 import Loading from '../Loading'
 
