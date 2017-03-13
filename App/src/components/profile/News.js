@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
-import { connect } from 'react-redux'
 import { Card } from 'semantic-ui-react'
+// import { connect } from 'react-redux'
 
-import LinkedStockCard from '../stocks/LinkedStockCard'
-import Loading from '../Loading'
+// import LinkedStockCard from '../stocks/LinkedStockCard'
+// import Loading from '../Loading'
 
 
 class News extends Component {
@@ -24,7 +24,5 @@ class News extends Component {
     )
   }
 }
-
-
 
 export default News

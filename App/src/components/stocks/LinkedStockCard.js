@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-import { Card, Button, Icon } from 'semantic-ui-react'
+import { Card, Icon } from 'semantic-ui-react'
 import { connect } from 'react-redux'
 import { unfollowStock } from '../../actions/stockActions'
 

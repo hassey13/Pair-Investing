@@ -32,23 +32,26 @@ export default class NavBar extends Component {
 
 
     return (
-      <Menu secondary attached='top'>
-        <Menu.Item name='home' >
-          <Link to='/'><img id='logo-png' src={require('../../../public/feather.png')} alt='logo'/></Link>
-        </Menu.Item>
-        <Menu.Item >
-          <div className='hover'>
+      <div>
 
-            <Search />
+        <Menu secondary attached='top'>
+          <Menu.Item name='home' >
+            <Link to='/'><img id='logo-png' src={require('../../../public/feather.png')} alt='logo'/></Link>
+          </Menu.Item>
+          <Menu.Item >
+            <div className='hover'>
 
-          </div>
-        </Menu.Item>
+              <Search />
 
-        <Menu.Item position='right' name='logout' onClick={this.handleLogOut} >
-          Logout
-        </Menu.Item>
+            </div>
+          </Menu.Item>
 
-      </Menu>
+          <Menu.Item position='right' name='logout' onClick={this.handleLogOut} >
+            Logout
+          </Menu.Item>
+
+        </Menu>
+      </div>
 
 
     )

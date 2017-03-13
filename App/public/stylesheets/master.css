@@ -59,6 +59,10 @@
   margin-top: -10px !important;
 }
 
+.unfollow-icon:hover {
+  cursor: pointer;
+}
+
 /* search results */
 .results {
   padding: 2.5em 3.5em 2.5em 3.5em;
@@ -103,4 +107,12 @@
 
 .padding {
   padding: 25px;
+}
+
+.center {
+  text-align: center;
+}
+
+.profileButton {
+  width: 120px;
 }
