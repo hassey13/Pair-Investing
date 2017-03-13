@@ -9,17 +9,19 @@ import { followUser, unfollowUser } from '../../actions/userActions'
 
 class IndividualProfileCard extends Component {
 
+  handleEdit() {
+    browserHistory.push(`/edit`)
+  }
+  
   handleFollow(username) {
     this.props.followUser(username)
     window.location.reload()
   }
 
-  handleEdit() {
-    browserHistory.push(`/edit`)
-  }
 
   handleUnfollow(username) {
     this.props.unfollowUser(username)
+    window.location.reload()
   }
 
   render(){
