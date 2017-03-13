@@ -79,7 +79,7 @@ export const userAdapter = {
   },
 
   unfollowUser: (username) => {
-    return axios.post('/unfollowuser', username)
+    return axios.post('/unfollow_user', username)
       .then((response) => {
         return response.data
       }).catch((error) => {
