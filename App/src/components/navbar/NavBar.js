@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Menu } from 'semantic-ui-react'
 import { browserHistory, Link } from 'react-router'
 
-import Search from '../search/Search'
+import SearchContainer from '../search/SearchContainer'
 import '../../../public/stylesheets/master.css'
 
 export default class NavBar extends Component {
@@ -41,7 +41,7 @@ export default class NavBar extends Component {
           <Menu.Item >
             <div className='hover'>
 
-              <Search />
+              <SearchContainer />
 
             </div>
           </Menu.Item>

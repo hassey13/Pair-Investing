@@ -30,17 +30,6 @@ export const userAdapter = {
     })
   },
 
-  fetchAllUsers: () => {
-    return axios.get('users')
-    .then( response => response.data )
-    .catch((error) => {
-      console.log('Unable to recieve all users')
-      console.log( error )
-
-      return error
-    })
-  },
-
   fetchOtherUser: (username) => {
     return axios.get(`/user/${username}`)
     .then( response => response )

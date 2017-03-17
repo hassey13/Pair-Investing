@@ -1,132 +1,77 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
-import SearchResults from './SearchResults'
-import UserSearchResults from './UserSearchResults'
+import { Search, Grid } from 'semantic-ui-react'
 
-import { queryStocks } from '../../actions/stockActions'
-import { fetchAllUsers } from '../../actions/userActions'
+import { queryStocks, queryUsers, startSearch, clearSearch } from '../../actions/searchActions'
 
-class Search extends React.Component {
-  constructor() {
-    super()
 
-    this.state = {
-      removeResults: true
-    }
+class NewSearch extends React.Component {
 
-    this.handleInput = this.handleInput.bind(this)
-    this.handleFocus = this.handleFocus.bind(this)
-    this.handleBlur = this.handleBlur.bind(this)
-    this.getSearchComponent = this.getSearchComponent.bind(this)
+  componentWillMount() { this.resetComponent() }
+
+  resetComponent = () => this.setState({ isLoading: false, results: [], value: '' })
+
+  handleResultSelect = (e, result) => this.setState({ value: result.title })
+
+  handleSearchChange = (e, value) => {
+    this.props.clearSearch()
+    this.setState({ isLoading: true, value })
+
+    setTimeout(() => {
+      if (this.state.value.length < 1) return this.resetComponent()
+        this.props.startSearch()
+        this.props.queryStocks(value)
+        this.props.queryUsers(value)
+    }, 2)
   }
 
-  handleInput() {
-    this.setState({ removeResults: false })
-    this.queryUnlessBlank()
-  }
+  validateResults = () => {
+    var tempResults = this.props.search
+    var memory = {}
 
-  handleBlur() {
-    setTimeout(()=>{ this.setState({ removeResults: true }) }, 250)
-  }
-
-  handleFocus() {
-    this.queryUnlessBlank()
+    return memory
   }
 
   render() {
-    const stockSearch = this.props.stockSearch
-    const userResults = this.props.userSearch
-    const searchComponent = this.getSearchComponent(stockSearch)
-    const userResultsComponent = this.getUserSearchComponent(userResults)
+    const value = this.state.value
+
+    var isLoading = this.state.isLoading && this.props.search.loading
+    // if ( 'loading' in this.props.search ) {
+    //   isLoading = this.props.search.loading
+    // }
+
+    var results = {}
+
+    if ( 'stocks' in this.props.search ) {
+      results = {...results, stocks: this.props.search.stocks}
+    }
+
+    if ( 'users' in this.props.search ) {
+      results = {...results, users: this.props.search.users}
+    }
+
+    // debugger
 
     return (
-      <div className="ui search" >
-        <div className="ui input">
-          <input
-            className="prompt"
-            icon='search'
-            placeholder='Search...'
-
-            type='search'
-            ref='search'
-            autoComplete='off'
-            onChange={ this.handleInput }
-            onFocus={ this.handleFocus }
-            onBlur={ this.handleBlur }
+      <Grid>
+        <Grid.Column width={8}>
+          <Search
+            category
+            loading={isLoading}
+            onSearchChange={this.handleSearchChange}
+            results={results}
+            value={value}
           />
-        </div>
-
-        { searchComponent }
-        <br/>
-        { userResultsComponent }
-      </div>
+        </Grid.Column>
+      </Grid>
     )
-  }
-
-  clearQuery(){
-    this.refs.search.value = ''
-  }
-
-  queryUnlessBlank() {
-    const query = this.refs.search.value
-    if(query !== ''){
-      this.setState({ removeResults: false })
-      this.props.queryStocks(query)
-      this.props.queryUsers()
-    } else {
-      this.setState({ removeResults: true })
-    }
-  }
-
-  getSearchComponent(stockSearch, userSearch){
-    let component = null
-
-    if(!this.state.removeResults){
-      component = (
-        <div>
-          {
-            stockSearch.map((stock, i) => {
-              return <SearchResults key={i} clearQuery={this.clearQuery.bind(this)} ticker={ stock.ticker } company_name={ stock.name } />
-            })
-          }
-        </div>
-      )
-    }
-
-    return component
-  }
-
-  getUserSearchComponent(userResults){
-    let component = null
-    let filteredResults = []
-
-    for(var i = 0; i < userResults.length; i++){
-      let firstName = userResults[i].first_name.toLowerCase()
-      let lastName = userResults[i].last_name.toLowerCase()
-      if ( (firstName.indexOf(this.refs.search.value.toLowerCase()) > -1) || (lastName.indexOf(this.refs.search.value) > -1) ) filteredResults.push(userResults[i])
-    }
-
-    if(!this.state.removeResults){
-      component = (
-        <div>
-          {
-            filteredResults.map((user, i) => {
-              return <UserSearchResults key={i} clearQuery={this.clearQuery.bind(this)} user={ user } />
-            })
-          }
-        </div>
-      )
-    }
-
-    return component
   }
 }
 
 const mapStateToProps = (state) => {
   return {
-    stockSearch: state.search,
-    userSearch: state.userSearch
+    search: state.search,
   }
 }
 
@@ -137,11 +82,21 @@ const mapDispatchToProps = (dispatch) => {
       dispatch( action )
     },
 
-    queryUsers: function() {
-      let action = fetchAllUsers()
+    queryUsers: function(query) {
+      let action = queryUsers(query)
+      dispatch( action )
+    },
+
+    startSearch: function() {
+      let action = startSearch()
+      dispatch( action )
+    },
+
+    clearSearch: function() {
+      let action = clearSearch()
       dispatch( action )
     }
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Search)
+export default connect(mapStateToProps, mapDispatchToProps)(NewSearch)
