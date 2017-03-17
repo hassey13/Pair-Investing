@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 
 import { Search, Grid } from 'semantic-ui-react'
 
-import { queryStocks, queryUsers, clearSearch } from '../../actions/searchActions'
+import { queryStocks, queryUsers, startSearch, clearSearch } from '../../actions/searchActions'
 
 
 class NewSearch extends React.Component {
@@ -11,8 +11,6 @@ class NewSearch extends React.Component {
   componentWillMount() { this.resetComponent() }
 
   resetComponent = () => this.setState({ isLoading: false, results: [], value: '' })
-
-  completeLoading = () => this.setState({ isLoading: false })
 
   handleResultSelect = (e, result) => this.setState({ value: result.title })
 
@@ -22,22 +20,36 @@ class NewSearch extends React.Component {
 
     setTimeout(() => {
       if (this.state.value.length < 1) return this.resetComponent()
+        this.props.startSearch()
         this.props.queryStocks(value)
         this.props.queryUsers(value)
     }, 2)
   }
 
-  // validateResults = () => {
-  //   var tempResults = this.props.search
-  //   var memory = {}
-  //
-  //   return memory
-  // }
+  validateResults = () => {
+    var tempResults = this.props.search
+    var memory = {}
+
+    return memory
+  }
 
   render() {
+    const value = this.state.value
 
-    const { isLoading, value } = this.state
-    const results = this.props.search
+    var isLoading = this.state.isLoading && this.props.search.loading
+    // if ( 'loading' in this.props.search ) {
+    //   isLoading = this.props.search.loading
+    // }
+
+    var results = {}
+
+    if ( 'stocks' in this.props.search ) {
+      results = {...results, stocks: this.props.search.stocks}
+    }
+
+    if ( 'users' in this.props.search ) {
+      results = {...results, users: this.props.search.users}
+    }
 
     // debugger
 
@@ -72,6 +84,11 @@ const mapDispatchToProps = (dispatch) => {
 
     queryUsers: function(query) {
       let action = queryUsers(query)
+      dispatch( action )
+    },
+
+    startSearch: function() {
+      let action = startSearch()
       dispatch( action )
     },
 

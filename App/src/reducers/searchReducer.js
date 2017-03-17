@@ -1,4 +1,4 @@
-export default function(state={}, action){
+export default function(state={loading: false}, action){
   switch (action.type) {
 
     case 'QUERY_STOCKS':
@@ -7,10 +7,10 @@ export default function(state={}, action){
       }
       else {
         if ( 'results' in action.payload) {
-          return {...state, stocks: action.payload }
+          return {...state, loading: false, stocks: action.payload }
         }
         else {
-          return state
+          return {...state, loading: false}
         }
       }
 
@@ -28,7 +28,7 @@ export default function(state={}, action){
       }
 
     case 'START_SEARCH':
-      return {stocks: {loading: true}, users: {loading: true}}
+      return { ...state, loading: true }
 
     case 'CLEAR_SEARCH':
       return action.payload
