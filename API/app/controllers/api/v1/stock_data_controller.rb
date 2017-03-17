@@ -50,13 +50,6 @@ class Api::V1::StockDataController < ApplicationController
     end
   end
 
-  def check_for_stock
-    url = "https://api.intrinio.com/companies?query=#{params[:id]}"
-    response = api_call(url)
-    response = response['data'][0..4]
-    render json: response
-  end
-
   def show
     url = "https://api.intrinio.com/historical_data?ticker=#{stock.ticker}&item=close_price&start_date=2017-02-16&end_date=2017-02-16"
     response = api_call(url)

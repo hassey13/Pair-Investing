@@ -12,7 +12,9 @@ Rails.application.routes.draw do
 
       post 'unfollow_stock', to: 'stocks#destroy', as: 'unfollow'
       get 'fetchstocks/:email', to: 'stock_data#index', as: 'fetchstocks'
-      get 'searchstocks/:id', to: 'stock_data#check_for_stock', as: 'searchstocks'
+
+      get 'searchstocks/:id', to: 'search#stocks', as: 'searchstocks'
+      get 'searchusers/:id', to: 'search#users', as: 'searchusers'
 
       post 'unfollow_user', to: 'friends#destroy'
       post 'follow_user', to: 'friends#create'

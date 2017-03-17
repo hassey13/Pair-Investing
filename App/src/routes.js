@@ -11,6 +11,7 @@ import Edit from './components/profile/Edit'
 export default (
   <Route path='/' component={ App }>
     <IndexRoute component={ Home } onEnter={ requireAuth }/>
+    <Route path='/home' component={ Home } />
     <Route path='/edit' component={ Edit } />
     <Route path={'/profile/:username'} component={ Profile } onEnter={ requireAuth } />
     <Route path='/login' component={ LogIn }/>
