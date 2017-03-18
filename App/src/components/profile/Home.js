@@ -4,11 +4,12 @@ import { Grid } from 'semantic-ui-react'
 
 import IndividualProfileCard from './IndividualProfileCard'
 import News from './News'
-import FollowingList from './FollowingList'
+import FollowingList from '../friends/FollowingList'
 import UserStocks from '../stocks/UserStocks'
 
 import { fetchUser } from '../../actions/userActions'
 
+import Loading from '../Loading'
 
 class Home extends Component {
 
@@ -19,11 +20,13 @@ class Home extends Component {
   render() {
     const user = this.props.user
 
+    if ( user === undefined || user.length === 0 ) return <Loading />
+
     return (
       <Grid>
         <Grid.Column width={ 5 }>
           <IndividualProfileCard user={ user } />
-          <FollowingList user={ user }/>
+          <FollowingList userFollowing={ user.friends }/>
         </Grid.Column>
 
         <Grid.Column width={ 11 }>

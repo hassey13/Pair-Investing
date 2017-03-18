@@ -57,7 +57,6 @@ class Api::V1::SearchController < ApplicationController
 
   def users
     query = params[:id].downcase
-    # binding.pry
     results = []
     i = 0
 
