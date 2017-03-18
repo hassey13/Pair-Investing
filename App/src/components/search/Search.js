@@ -1,5 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import { browserHistory } from 'react-router'
 
 import { Search, Grid } from 'semantic-ui-react'
 
@@ -12,7 +13,21 @@ class NewSearch extends React.Component {
 
   resetComponent = () => this.setState({ isLoading: false, results: [], value: '' })
 
-  handleResultSelect = (e, result) => this.setState({ value: result.title })
+  handleResultSelect = (e, result) => {
+    var a = e.target.parentElement
+    var b = a.parentElement
+    var c = b.parentElement
+    var category = c.firstChild.textContent
+
+    if ( category === "stocks") {
+      browserHistory.push(`/stocks/${result.title}`)
+    }
+    else {
+      browserHistory.push(`/profile/${result.description}`)
+    }
+
+    this.resetComponent()
+  }
 
   handleSearchChange = (e, value) => {
     this.props.clearSearch()
@@ -26,32 +41,24 @@ class NewSearch extends React.Component {
     }, 2)
   }
 
-  validateResults = () => {
-    var tempResults = this.props.search
-    var memory = {}
-
-    return memory
-  }
+  // validateResults = () => {
+  //   var tempResults = this.props.search
+  //   var memory = {}
+  //
+  //   return memory
+  // }
 
   render() {
     const value = this.state.value
-
-    var isLoading = this.state.isLoading && this.props.search.loading
-    // if ( 'loading' in this.props.search ) {
-    //   isLoading = this.props.search.loading
-    // }
+    const isLoading = this.state.isLoading && this.props.search.loading
 
     var results = {}
-
     if ( 'stocks' in this.props.search ) {
       results = {...results, stocks: this.props.search.stocks}
     }
-
     if ( 'users' in this.props.search ) {
       results = {...results, users: this.props.search.users}
     }
-
-    // debugger
 
     return (
       <Grid>
@@ -59,6 +66,7 @@ class NewSearch extends React.Component {
           <Search
             category
             loading={isLoading}
+            onResultSelect={this.handleResultSelect}
             onSearchChange={this.handleSearchChange}
             results={results}
             value={value}

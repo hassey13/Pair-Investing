@@ -4,6 +4,7 @@ const FETCH_STOCKS_OWNED = 'FETCH_STOCKS_OWNED'
 const QUERY_STOCKS = 'QUERY_STOCKS'
 const REMOVE_STOCK = 'REMOVE_STOCK'
 const ADD_STOCK = 'ADD_STOCK'
+const FETCH_STOCK_DATA = 'FETCH_STOCK_DATA'
 
 export const fetchStocksOwned = (user) => {
   const response = stockAdapter.fetchStock(user)
@@ -37,6 +38,15 @@ export const unfollowStock = (params) => {
 
   return {
     type: REMOVE_STOCK,
+    payload: response
+  }
+}
+
+export const fetchStockData = (params) => {
+  const response = stockAdapter.fetchStockData(params)
+
+  return {
+    type: FETCH_STOCK_DATA,
     payload: response
   }
 }

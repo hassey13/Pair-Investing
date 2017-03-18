@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 
 import IndividualProfileCard from './IndividualProfileCard'
 import UserStocks from '../stocks/UserStocks'
-import FollowingList from './FollowingList'
+import FollowingList from '../friends/FollowingList'
 
 import { fetchUser, fetchOtherUser } from '../../actions/userActions'
 

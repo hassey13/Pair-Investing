@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { browserHistory } from 'react-router'
 
 import { Card, Icon } from 'semantic-ui-react'
 import { connect } from 'react-redux'
@@ -17,7 +18,9 @@ class LinkedStockCard extends Component {
     )
   }
 
-
+  handleClick(){
+    browserHistory.push(`/stocks/${this.props.stock.ticker}`)
+  }
 
   render(){
     return (
@@ -26,7 +29,7 @@ class LinkedStockCard extends Component {
           <div></div>
           <Icon className='circular unfollow-icon' onClick={this.handleUnfollow} corner name='delete' inverted color='red' />
 
-          <Card.Content onClick={this.handleClick}>
+          <Card.Content className={'link'} onClick={this.handleClick.bind(this)}>
             <Card.Header as='h5'>{this.props.stock.ticker}</Card.Header>
             <Card.Description >{this.props.stock.company_name}</Card.Description>
 

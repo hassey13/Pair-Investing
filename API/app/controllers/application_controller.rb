@@ -18,7 +18,8 @@ class ApplicationController < ActionController::API
     end
 
   def api_call(url)
-    all_stocks = RestClient.get(url, {:'Authorization' => password })
-    response = JSON.parse(all_stocks)
+    response = RestClient.get(url, {:'Authorization' => password })
+    parsed_response = JSON.parse(response)
   end
+
 end

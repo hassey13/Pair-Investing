@@ -51,18 +51,21 @@ class Api::V1::StockDataController < ApplicationController
   end
 
   def show
-    url = "https://api.intrinio.com/historical_data?ticker=#{stock.ticker}&item=close_price&start_date=2017-02-16&end_date=2017-02-16"
+    query = params[:ticker].upcase
+    url = "https://api.intrinio.com/companies?identifier=#{query}"
     response = api_call(url)
 
-    stock_data = {
-      ticker: "#{stock.ticker}",
-      company_name: "#{stock.company_name}",
-      data: [{
-        last_price: "#{stock.last_price}"
-      }]
-    }
+    # PRICES include date range
+    # https://api.intrinio.com/prices?identifier=AAPL
 
-    render json: response
+    # INFO
+    # https://api.intrinio.com/companies?identifier=AA
+
+    stock_data = {
+      ticker: "#{response["ticker"]}",
+      name: "#{response["name"]}",
+    }
+    render json: stock_data
   end
 
   #news endpoint

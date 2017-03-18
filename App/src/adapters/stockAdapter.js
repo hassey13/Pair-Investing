@@ -15,5 +15,9 @@ export const stockAdapter = {
 
   unfollowStock: (params) => {
     return axios.post('unfollow_stock', params).then(response => response.data)
+  },
+
+  fetchStockData: (params) => {
+    return axios.get(`stocks/${params}`).then(response => response.data)
   }
 }
