@@ -48,7 +48,7 @@ class LoginForm extends Component {
             <label>Password</label>
             <input name='password' onChange={this.handleChange} type='password' placeholder='password' />
           </Form.Field>
-          <Button type='submit' color='green'>Log In</Button>
+          <Button type='submit' color='blue'>Log In</Button>
 
           <Button onClick={ this.handleSignUp } animated>
             <Button.Content visible>Sign Up</Button.Content>

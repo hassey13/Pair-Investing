@@ -12,14 +12,6 @@ class LinkedFriendCard extends Component {
     this.props.fetchOtherUser(username)
   }
 
-  // TODO implement feature to stop following someone
-
-  // handleUnfollow(){
-  //   this.props.unfollowStock(
-  //     { ticker: this.props.stock.ticker }
-  //   )
-  // }
-
   render() {
     return (
       <List.Item className='link' onClick={ this.handleClick.bind(this, this.props.following.username) }>

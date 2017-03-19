@@ -25,7 +25,7 @@ export default class FollowingList extends Component {
 
     if ( followingList.length === 0 ) {
       return (
-        <div className="following-list">
+        <div className="following-list inline">
           <Card>
             <h5>Following</h5>
             <h5>No one is following this stock</h5>

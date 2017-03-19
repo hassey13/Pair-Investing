@@ -1,13 +1,14 @@
 
-
-
-
 .link {
   cursor: pointer;
 }
 
 .padding {
   padding: 25px;
+}
+
+.inline {
+  display: inline-block !important;
 }
 
 .center {
@@ -23,6 +24,18 @@
 
 }
 
+.signup {
+  text-align: center;
+  width: 600px;
+  margin: 0 auto;
+}
+
+.login {
+  text-align: center;
+  width: 600px;
+  margin: 0 auto;
+}
+
 /* individual results*/
 /*.padded{
   padding: 1em;
@@ -31,6 +44,11 @@
 .padded, .stock-header, .follow-button {
   display: inline;
 }*/
+
+.following-list {
+  vertical-align: top;
+  padding-right: 25px;
+}
 
 .follow-button {
   float: right;
@@ -74,4 +92,39 @@
 
 .ui.card {
   padding: 5px;
+}
+
+table {
+  font-family: "Open Sans", sans-serif;
+  display: inline-block;
+  margin: 0;
+  padding-left: 20px;
+  padding-right: 20px;
+  table-layout: fixed;
+  line-height: 1.25;
+}
+
+table caption {
+  font-size: 1.5em;
+  margin: .5em 0 .75em;
+}
+
+table tr {
+  background: #fff;
+  border-bottom: 1px solid #ddd;
+  padding: .35em;
+}
+
+table td {
+  width: 82%;
+  padding: .625em;
+  text-align: center;
+}
+
+.left {
+  text-align: left;
+}
+
+.right {
+  text-align: right;
 }
