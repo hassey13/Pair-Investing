@@ -34,14 +34,27 @@ class StockShow extends Component {
     return (
       <div>
         <StockHeader stock={stock}/>
-        
-        <SocialData />
 
-        <FollowingList userFollowing={followingList} />
-        <StockGraph />
-        <StockData />
-        <StockNews />
-        <StockComments />
+        <br></br>
+        <SocialData />
+        <div className='padding'></div>
+
+        <div className='inline following-list'>
+          <FollowingList userFollowing={followingList} />
+          <div className='padding'></div>
+          <h3 className='center'>See Stocks You Follow:</h3>
+        </div>
+
+        <div className='inline'>
+          <StockData />
+          <div className='padding'></div>
+          <StockGraph />
+          <div className='padding'></div>
+          <StockNews />
+          <div className='padding'></div>
+          <StockComments />
+        </div>
+
       </div>
     )
   }

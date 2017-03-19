@@ -5,13 +5,15 @@ import Loading from '../Loading'
 
 import { Card } from 'semantic-ui-react'
 
+import stockGraph from "../../../public/images/stock.jpeg"
+
 class StockGraph extends Component {
 
   render() {
 
     return (
-      <div>
-        <h1>StockGraph</h1>
+      <div className='center inline'>
+        <img src={stockGraph} height='250px'/>
       </div>
     )
   }

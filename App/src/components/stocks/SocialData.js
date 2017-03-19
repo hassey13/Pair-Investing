@@ -12,7 +12,7 @@ class SocialData extends Component {
     return (
       <div>
         <hr></hr>
-        <h5>Like   Dislike   Following   Comments</h5>
+        <h5>Follow/Unfollow   Recommend to Friend   Like   Dislike   Following   Comments</h5>
         <hr></hr>
       </div>
     )

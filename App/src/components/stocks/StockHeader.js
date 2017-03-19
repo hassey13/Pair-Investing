@@ -15,7 +15,7 @@ class StockHeader extends Component {
     return (
       <div>
         <h1>{stock.name}</h1>
-        <h3>{stock.ticker}</h3>
+        <p>Symbol: {stock.ticker}</p>
       </div>
     )
   }
