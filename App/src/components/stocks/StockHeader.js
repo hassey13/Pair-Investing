@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
-import { connect } from 'react-redux'
+// import { connect } from 'react-redux'
 
 import Loading from '../Loading'
 
-import { Card } from 'semantic-ui-react'
+// import { Card } from 'semantic-ui-react'
 
 class StockHeader extends Component {
 

@@ -1,34 +1,29 @@
-export default function(state={loading: false}, action){
+export default function(state={default : {loading: false}}, action){
   switch (action.type) {
 
     case 'QUERY_STOCKS':
-      if ( 'stocks' in state ) {
-        return Object.assign({}, state, { stocks: action.payload })
+      console.log(action.payload)
+      if ( 'users' in state[action.payload.query]) {
+        state = Object.assign({}, state, { [action.payload.query]: { users: state[action.payload.query].users, stocks: action.payload.data, loading: false} })
+        return state
       }
       else {
-        if ( 'results' in action.payload) {
-          return {...state, loading: false, stocks: action.payload }
-        }
-        else {
-          return {...state, loading: false}
-        }
+        state = Object.assign({}, state, { [action.payload.query]: { stocks: action.payload.data, loading: true} })
+        return state
       }
 
     case 'QUERY_USERS':
-      if ( 'users' in state ) {
-        return Object.assign({}, state, { users: action.payload })
+      if ('stocks' in state[action.payload.query] ) {
+        state = Object.assign({}, state, { [action.payload.query]: { stocks: state[action.payload.query].stocks, stocks: action.payload.data, loading: false} })
+        return state
       }
       else {
-        if ( 'results' in action.payload) {
-          return {...state, users: action.payload }
-        }
-        else {
-          return state
-        }
+        state = Object.assign({}, state, { [action.payload.query]: { users: action.payload.data, loading: true } })
+        return state
       }
 
     case 'START_SEARCH':
-      return { ...state, loading: true }
+      return { ...state, [action.payload.toUpperCase()]: { loading: true} }
 
     case 'CLEAR_SEARCH':
       return action.payload
@@ -37,3 +32,18 @@ export default function(state={loading: false}, action){
       return state
   }
 }
+
+// State looks like an object with keys in the format below:
+// { query: 'fb', data: {
+//     stocks: {
+//       name: stocks, results: {
+//           stuff }
+//       }
+//     },
+//     users: {
+//       name: users, results: {
+//           stuff }
+//     },
+//     loading: t/f
+//   }
+// }

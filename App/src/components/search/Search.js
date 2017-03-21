@@ -5,7 +5,7 @@ import { browserHistory } from 'react-router'
 import { Search, Grid } from 'semantic-ui-react'
 
 import { queryStocks, queryUsers, startSearch, clearSearch } from '../../actions/searchActions'
-
+import { fetchOtherUser } from '../../actions/userActions'
 
 class NewSearch extends React.Component {
 
@@ -24,6 +24,7 @@ class NewSearch extends React.Component {
     }
     else {
       browserHistory.push(`/profile/${result.description}`)
+      this.props.fetchOtherUser(result.description)
     }
 
     this.resetComponent()
@@ -35,29 +36,30 @@ class NewSearch extends React.Component {
 
     setTimeout(() => {
       if (this.state.value.length < 1) return this.resetComponent()
-        this.props.startSearch()
+        this.props.startSearch(value)
         this.props.queryStocks(value)
         this.props.queryUsers(value)
     }, 2)
   }
 
-  // validateResults = () => {
-  //   var tempResults = this.props.search
-  //   var memory = {}
-  //
-  //   return memory
-  // }
-
   render() {
     const value = this.state.value
-    const isLoading = this.state.isLoading && this.props.search.loading
+    var upValue = value.toUpperCase()
+
+    var isLoading = this.state.isLoading
+    if ( `${upValue}` in this.props.search ) {
+      isLoading = this.props.search[upValue].loading
+    }
 
     var results = {}
-    if ( 'stocks' in this.props.search ) {
-      results = {...results, stocks: this.props.search.stocks}
-    }
-    if ( 'users' in this.props.search ) {
-      results = {...results, users: this.props.search.users}
+    if ( !!upValue && `${upValue}` in this.props.search ) {
+
+      if ( 'stocks' in this.props.search[upValue] ) {
+        results = {...results, stocks: this.props.search[upValue].stocks}
+      }
+      if ( 'users' in this.props.search[upValue] ) {
+        results = {...results, users: this.props.search[upValue].users}
+      }
     }
 
     return (
@@ -80,6 +82,7 @@ class NewSearch extends React.Component {
 const mapStateToProps = (state) => {
   return {
     search: state.search,
+    viewUser: state.viewUser
   }
 }
 
@@ -95,13 +98,17 @@ const mapDispatchToProps = (dispatch) => {
       dispatch( action )
     },
 
-    startSearch: function() {
-      let action = startSearch()
+    startSearch: function(value) {
+      let action = startSearch(value)
       dispatch( action )
     },
 
     clearSearch: function() {
       let action = clearSearch()
+      dispatch( action )
+    },
+    fetchOtherUser: function(username){
+      let action = fetchOtherUser(username)
       dispatch( action )
     }
   }
