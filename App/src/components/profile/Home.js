@@ -26,7 +26,7 @@ class Home extends Component {
       <Grid>
         <Grid.Column width={ 5 }>
           <IndividualProfileCard user={ user } />
-          <FollowingList userFollowing={ user.friends }/>
+          <FollowingList following={ user }/>
         </Grid.Column>
 
         <Grid.Column width={ 11 }>

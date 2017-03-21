@@ -27,7 +27,7 @@ class Profile extends Component {
         <Grid>
           <Grid.Column width={ 5 }>
             <IndividualProfileCard currentUser={currentUser} user={ user } />
-            <FollowingList user={ user }/>
+            <FollowingList following={ user } />
           </Grid.Column>
 
           <Grid.Column width={ 11 }>

@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
-import { Card } from 'semantic-ui-react'
+// import { Card } from 'semantic-ui-react'
 
 import FollowingList from '../friends/FollowingList'
 
@@ -9,7 +9,7 @@ import StockHeader from './StockHeader'
 import StockData from './StockData'
 import SocialData from './SocialData'
 import StockGraph from './StockGraph'
-import FriendsFollowing from './FriendsFollowing'
+
 import StockNews from './StockNews'
 import StockComments from './StockComments'
 import Loading from '../Loading'
@@ -27,7 +27,7 @@ class StockShow extends Component {
 
   render() {
     const stock = this.props.stock
-    const followingList = []
+    const followingList = {followers: []}
 
     if ( stock === undefined || stock.length === 0 ) return <Loading />
 
@@ -40,7 +40,7 @@ class StockShow extends Component {
         <div className='padding'></div>
 
         <div className='inline following-list'>
-          <FollowingList userFollowing={followingList} />
+          <FollowingList following={followingList} />
           <div className='padding'></div>
           <h3 className='center'>See Stocks You Follow:</h3>
         </div>

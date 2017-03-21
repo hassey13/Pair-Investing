@@ -23,10 +23,10 @@ export const queryUsers = (query) => {
   }
 }
 
-export const startSearch = () => {
+export const startSearch = (value) => {
   return {
     type: START_SEARCH,
-    payload: {}
+    payload: value
   }
 }
 

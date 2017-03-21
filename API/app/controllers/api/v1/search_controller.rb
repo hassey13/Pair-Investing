@@ -45,14 +45,8 @@ class Api::V1::SearchController < ApplicationController
       break if page > response['total_pages']
     end
 
-
-    api_response = { name: "stocks", "results": results.uniq }
-
-    if results.length == 0
-      render json: {}
-    else
-      render json: api_response
-    end
+    api_response = { "query": query, data: { name: "stocks", "results": results.uniq } }
+    render json: api_response
   end
 
   def users
@@ -76,13 +70,10 @@ class Api::V1::SearchController < ApplicationController
       break if results.length == 5
     end
 
-    api_response = { name: "users", "results": results.uniq[0..4] }
+    query = query.upcase
 
-    if results.length == 0
-      render json: {}
-    else
-      render json: api_response
-    end
+    api_response = { "query": query, data: { name: "users", "results": results.uniq[0..4] } }
+    render json: api_response
   end
 
   private

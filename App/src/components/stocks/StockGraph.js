@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
-import { connect } from 'react-redux'
+// import { connect } from 'react-redux'
 
-import Loading from '../Loading'
+// import Loading from '../Loading'
 
-import { Card } from 'semantic-ui-react'
+// import { Card } from 'semantic-ui-react'
 
 import stockGraph from "../../../public/images/stock.jpeg"
 
@@ -13,7 +13,7 @@ class StockGraph extends Component {
 
     return (
       <div className='center inline'>
-        <img src={stockGraph} height='250px'/>
+        <img src={stockGraph} alt="graph" height='250px'/>
       </div>
     )
   }

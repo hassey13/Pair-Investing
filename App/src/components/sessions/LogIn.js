@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { browserHistory , Link} from 'react-router'
 import { connect } from 'react-redux'
 
-import { Button, Checkbox, Form, Icon, Message } from 'semantic-ui-react'
+import { Button, Form, Icon, Message } from 'semantic-ui-react'
 
 import { login } from '../../actions/userActions'
 
