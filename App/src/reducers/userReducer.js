@@ -1,20 +1,29 @@
-import { browserHistory } from 'react-router'
-
 export default function userReducer( state=[], action ){
   switch (action.type) {
 
     case 'LOGIN_USER':
-      browserHistory.push('/home')
-      return action.payload.user
+      if ( 'error' in action.payload ) {
+        return action.payload
+      }
+      else {
+        return action.payload.user
+      }
 
     case 'CREATE_USER':
-      return action.payload
-
-    case 'ADD_USER':
-      return state
+      if ( 'error' in action.payload ) {
+        return state
+      }
+      else {
+        return action.payload
+      }
 
     case 'FETCH_USER':
-      return action.payload
+      if ( 'error' in action.payload ) {
+        return state
+      }
+      else {
+        return action.payload
+      }
 
     case 'REMOVE_STOCK':
       const new_state = state.stocks.filter(stock => stock.ticker !== action.payload)

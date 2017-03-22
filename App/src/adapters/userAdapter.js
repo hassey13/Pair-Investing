@@ -8,15 +8,17 @@ export const userAdapter = {
   login: (credentials) => {
     return axios.post('/login', credentials)
       .then((response) => {
-        sessionStorage.setItem('jwt', response.data.jwt)
-        axios.defaults.headers.common['AUTHORIZATION'] = response.data.jwt
-
+        if ('jwt' in response.data) {
+          sessionStorage.setItem('jwt', response.data.jwt)
+          axios.defaults.headers.common['AUTHORIZATION'] = response.data.jwt
+          browserHistory.push('/')
+        }
         return response.data
       }).catch((error) => {
-        console.log('Failed to login')
-        console.log(error)
-        return error
-      })
+          console.log('Failed to Login!')
+          console.log(error)
+          return {error: error}
+        })
   },
 
   fetchUser: () => {
@@ -25,8 +27,7 @@ export const userAdapter = {
     .catch((error) => {
       console.log('Failed to get user info')
       console.log(error)
-
-      return error
+      return {error: error}
     })
   },
 
@@ -36,8 +37,7 @@ export const userAdapter = {
     .catch((error) => {
       console.log('Failed to get other user info')
       console.log(error)
-
-      return error
+      return {error: error}
     })
   },
 
@@ -52,7 +52,7 @@ export const userAdapter = {
       }).catch((error) => {
         console.log('Failed to sign up')
         console.log(error)
-        return error
+        return {error: error}
       })
   },
 
@@ -63,7 +63,7 @@ export const userAdapter = {
       }).catch((error) => {
         console.log('Failed to follow user')
         console.log(error)
-        return error
+        return {error: error}
       })
   },
 
@@ -74,7 +74,7 @@ export const userAdapter = {
       }).catch((error) => {
         console.log('Failed to unfollow user')
         console.log(error)
-        return error
+        return {error: error}
       })
   }
 }

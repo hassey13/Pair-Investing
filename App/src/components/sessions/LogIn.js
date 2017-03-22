@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { browserHistory , Link} from 'react-router'
 import { connect } from 'react-redux'
 
+import ErrorMessage from './ErrorMessage'
 import { Button, Form, Icon, Message } from 'semantic-ui-react'
 
 import { login } from '../../actions/userActions'
@@ -41,7 +42,11 @@ class LogIn extends Component {
   render(){
     if(!!sessionStorage.jwt) {
       browserHistory.push('/')
-      window.location.reload()
+    }
+
+    var error = false
+    if ( 'error' in this.props.user ) {
+      error = true
     }
 
     return (
@@ -52,6 +57,9 @@ class LogIn extends Component {
         />
 
       <Form className='attached fluid segment signup' onSubmit={this.handleSubmit}>
+
+        <ErrorMessage error={ error } />
+
         <div className='inline'>
           <Form.Field>
             <label>Email</label>
@@ -72,6 +80,7 @@ class LogIn extends Component {
       </Form>
 
 
+
       <Message attached='bottom' warning>
         <Icon name='help' />
         New to Pair Investing?&nbsp;<Link to='/signup'>Sign up here</Link>&nbsp;first.
@@ -81,10 +90,16 @@ class LogIn extends Component {
   }
 }
 
+const mapStateToProps = ( state ) => {
+
+  return {
+    user: state.user,
+  }
+}
+
 const mapDispatchToProps = ( dispatch ) => {
 
   return {
-
     login: function( credentials ){
       let action = login( credentials )
       dispatch( action )
@@ -92,4 +107,4 @@ const mapDispatchToProps = ( dispatch ) => {
   }
 }
 
-export default connect( null, mapDispatchToProps )( LogIn )
+export default connect( mapStateToProps, mapDispatchToProps )( LogIn )

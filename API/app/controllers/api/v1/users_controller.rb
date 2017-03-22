@@ -41,9 +41,8 @@ class Api::V1::UsersController < ApplicationController
       render json: { jwt: jwt, user: @user }
     else
       render json: {
-        error: "Username or Password Incorrect",
-        status: 400
-      }, status: 400
+        error: "Username or Password Incorrect"
+      }
     end
   end
 
