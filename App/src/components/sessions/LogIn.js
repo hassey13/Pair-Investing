@@ -74,7 +74,7 @@ class LogIn extends Component {
 
       <Message attached='bottom' warning>
         <Icon name='help' />
-        New to Pair Investing?&nbsp;<Link to='/login'>Sign up here</Link>&nbsp;first.
+        New to Pair Investing?&nbsp;<Link to='/signup'>Sign up here</Link>&nbsp;first.
       </Message>
     </div>
     )

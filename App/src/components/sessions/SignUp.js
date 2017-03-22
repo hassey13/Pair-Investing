@@ -92,7 +92,7 @@ class SignUp extends Component {
           </Form.Field>
 
           <br/>
-          <Form.Checkbox inline label='I agree to the terms and conditions' />
+          <Form.Checkbox inline  name='terms' label='I agree to the terms and conditions' />
           <br/><br/>
 
           <Button type='submit' color='blue'>Sign Up</Button>

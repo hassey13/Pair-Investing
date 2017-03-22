@@ -17,6 +17,8 @@
 default: &default
   adapter: postgresql
   encoding: unicode
+  username: "postgres"
+  password: <%= ENV['SOCIAL_STOCK_API_DATABASE_PASSWORD'] %>
   # For details on connection pooling, see rails configuration guide
   # http://guides.rubyonrails.org/configuring.html#database-pooling
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
@@ -24,7 +26,7 @@ default: &default
 development:
   <<: *default
   database: social-stock-api_development
-
+    #<%= ENV['SOCIAL-STOCK-API_DATABASE_PASSWORD'] %>
   # The specified database role being used to connect to postgres.
   # To create additional roles in postgres see `$ createuser --help`.
   # When left blank, postgres will use the default role. This is
@@ -82,4 +84,4 @@ production:
   <<: *default
   database: social-stock-api_production
   username: social-stock-api
-  password: <%= ENV['SOCIAL-STOCK-API_DATABASE_PASSWORD'] %>
+  password: <%= ENV['SOCIAL_STOCK_API_DATABASE_PASSWORD'] %>
