@@ -4,7 +4,7 @@ import { browserHistory } from 'react-router'
 
 import { Search, Grid } from 'semantic-ui-react'
 
-import { queryStocks, queryUsers, startSearch, clearSearch } from '../../actions/searchActions'
+import { queryStocks, queryUsers, startSearch } from '../../actions/searchActions'
 import { fetchOtherUser } from '../../actions/userActions'
 
 class NewSearch extends React.Component {
@@ -26,12 +26,10 @@ class NewSearch extends React.Component {
       browserHistory.push(`/profile/${result.description}`)
       this.props.fetchOtherUser(result.description)
     }
-
     this.resetComponent()
   }
 
   handleSearchChange = (e, value) => {
-    this.props.clearSearch()
     this.setState({ isLoading: true, value })
 
     setTimeout(() => {
@@ -100,11 +98,6 @@ const mapDispatchToProps = (dispatch) => {
 
     startSearch: function(value) {
       let action = startSearch(value)
-      dispatch( action )
-    },
-
-    clearSearch: function() {
-      let action = clearSearch()
       dispatch( action )
     },
     fetchOtherUser: function(username){
