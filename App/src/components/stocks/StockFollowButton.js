@@ -18,7 +18,9 @@ class StockFollowButton extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    this.checkFollowing(this.props.user, nextProps.stock)
+    if (this.props.stock.ticker !== nextProps.stock.ticker) {
+      this.checkFollowing(this.props.user, nextProps.stock)
+    }
   }
 
   handleFollow(stock_params) {
@@ -49,15 +51,15 @@ class StockFollowButton extends Component {
 
     if ( this.state.followed ) {
       return (
-        <div className={'center'}>
-          <Button className={'profileButton'} onClick={ this.handleUnfollow.bind(this,{ticker: stock.ticker, company_name: stock.company_name}) } color='red'>Unfollow</Button>
+        <div>
+          <Button className={'social-button-follow'} onClick={ this.handleUnfollow.bind(this,{ticker: stock.ticker, company_name: stock.company_name}) } color='red'>Unfollow</Button>
         </div>
       )
     }
 
     return (
       <div className={'center'}>
-        <Button className={'profileButton'} onClick={ this.handleFollow.bind(this,{ticker: stock.ticker, company_name: stock.company_name}) } color='green'>Follow</Button>
+        <Button className={'social-button'} onClick={ this.handleFollow.bind(this,{ticker: stock.ticker, company_name: stock.company_name}) } color='green'>Follow</Button>
       </div>
     )
   }

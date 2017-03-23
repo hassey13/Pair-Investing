@@ -15,6 +15,7 @@ import Loading from '../Loading'
 import { fetchUser } from '../../actions/userActions'
 
 import { fetchStockData } from '../../actions/stockActions'
+import StockFollowButton from './StockFollowButton'
 
 import '../../../public/stylesheets/master.css'
 
@@ -31,13 +32,14 @@ class StockShow extends Component {
     const stock = this.props.stock
     const followingList = {followers: []}
 
-    if ( stock === undefined || stock.length === 0 ) return <Loading />
+    if ( stock === undefined || stock.length === 0 || user === undefined || user.length === 0 ) return <Loading />
 
     return (
       <div>
         <StockHeader stock={stock}/>
-
-        <br></br>
+        <br/>
+        <StockFollowButton stock={ stock } user={ user } />
+        <br/>
         <SocialData user={ user } stock={ stock }/>
         <div className='padding'></div>
 
