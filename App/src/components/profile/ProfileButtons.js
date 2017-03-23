@@ -3,11 +3,24 @@ import { Button } from 'semantic-ui-react'
 import { connect } from 'react-redux'
 import { browserHistory } from 'react-router'
 
-import Loading from '../Loading'
-
 import { followUser, unfollowUser } from '../../actions/userActions'
 
 class ProfileButtons extends Component {
+
+  constructor() {
+    super()
+    this.state = {
+      followed: undefined
+    }
+  }
+
+  componentWillMount() {
+    this.checkFollowing(this.props.user, this.props.currentUser)
+  }
+
+  componentWillReceiveProps(nextProps) {
+    this.checkFollowing(nextProps.user, this.props.currentUser)
+  }
 
   handleEdit() {
     browserHistory.push(`/edit`)
@@ -19,20 +32,31 @@ class ProfileButtons extends Component {
 
   handleFollow(username) {
     this.props.followUser(username)
-    this.props.currentUser.followed = true
+    this.setState({ followed: true })
   }
 
   handleUnfollow(username) {
     this.props.unfollowUser(username)
-    this.props.currentUser.followed = false
+    this.setState({ followed: false })
+  }
+
+  checkFollowing(user, currentUser) {
+    if ( currentUser === undefined || currentUser.length === 0 ) return false
+    let i = 0
+    while ( i < currentUser.friends.length ) {
+      if ( currentUser.friends[i].username === user.username  ) {
+        this.setState({ followed: true })
+        return true
+      }
+      i += 1
+    }
+    this.setState({ followed: false })
+    return false
   }
 
   render() {
-    var user = this.props.user
-    if ( user === undefined || user.length === 0 ) return <Loading />
-
-    var currentUser = undefined
-    if ( this.props.currentUser !== 0 ) currentUser = this.props.currentUser
+    const user = this.props.user
+    const currentUser = this.props.currentUser
 
     if ( currentUser === undefined || currentUser.length === 0 || user.username === currentUser.username ) {
       return (
@@ -42,17 +66,11 @@ class ProfileButtons extends Component {
       )
     }
 
-    for (var i = 0; i < currentUser.friends.length; i++) {
-      if ( currentUser.friends[i].username === user.username) {
-        currentUser.followed = true
-      }
-    }
-
-    if ( !currentUser.followed ) {
+    if ( this.state.followed ) {
       return (
         <div className={'center'}>
           <Button className={'profileButton'} onClick={ this.handleMessage.bind(this, user.username) } color='blue'>Message</Button>
-          <Button className={'profileButton'} onClick={ this.handleFollow.bind(this, user.username) } color='green'>Follow</Button>
+          <Button className={'profileButton'} onClick={ this.handleUnfollow.bind(this, user.username) } color='red'>Unfollow</Button>
         </div>
       )
     }
@@ -60,7 +78,7 @@ class ProfileButtons extends Component {
     return (
       <div className={'center'}>
         <Button className={'profileButton'} onClick={ this.handleMessage.bind(this, user.username) } color='blue'>Message</Button>
-        <Button className={'profileButton'} onClick={ this.handleUnfollow.bind(this, user.username) } color='red'>Unfollow</Button>
+        <Button className={'profileButton'} onClick={ this.handleFollow.bind(this, user.username) } color='green'>Follow</Button>
       </div>
     )
   }

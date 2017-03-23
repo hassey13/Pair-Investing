@@ -5,8 +5,8 @@ export default function(state=[], action){
       return action.payload
 
     case 'REMOVE_STOCK':
-      const new_state = state.filter(stock => stock.ticker !== action.payload)
-      return new_state
+      if ( typeof state === "array" ) return state.filter(stock => stock.ticker !== action.payload)
+      return state
 
     case 'FETCH_STOCK_DATA':
       return action.payload

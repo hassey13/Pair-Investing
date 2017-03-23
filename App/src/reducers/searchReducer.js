@@ -11,7 +11,7 @@ export default function(state={default : {loading: false}}, action){
 
     case 'QUERY_USERS':
       if ('stocks' in state[action.payload.query] ) {
-        return Object.assign({}, state, { [action.payload.query]: { stocks: state[action.payload.query].stocks, stocks: action.payload.data, loading: false} })
+        return Object.assign({}, state, { [action.payload.query]: { stocks: state[action.payload.query].stocks, users: action.payload.data, loading: false} })
       }
       else {
         return Object.assign({}, state, { [action.payload.query]: { users: action.payload.data, loading: true } })

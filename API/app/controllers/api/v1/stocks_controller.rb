@@ -1,5 +1,5 @@
 class Api::V1::StocksController < ApplicationController
-  before_action :set_stock, only: [:show, :update]
+  # before_action :set_stock, only: [:show, :update]
 
   def index
     @stocks = Stock.all
@@ -7,6 +7,7 @@ class Api::V1::StocksController < ApplicationController
   end
 
   def show
+    @stock = Stock.all
     render json: @stock
   end
 
@@ -26,16 +27,6 @@ class Api::V1::StocksController < ApplicationController
       render json: response
     end
   end
-
-  # def user_stocks
-  #   @stocks = get_current_user.stocks
-  #   if @stocks.length > 0
-  #     stock_list = @stocks.collect {|stock|
-  #       stock.ticker
-  #     }
-  #   end
-  #   render json: stock_list
-  # end
 
   def destroy
     @stock = Stock.find_by(ticker: params[:ticker])

@@ -17,7 +17,7 @@ Rails.application.routes.draw do
       post 'unfollow_user', to: 'friends#destroy'
       post 'follow_user', to: 'friends#create'
       get 'friends/:username', to: 'friends#fetch_following'
-      
+
       resources :comments
       resources :stocks
       resources :users

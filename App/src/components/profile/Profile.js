@@ -5,6 +5,8 @@ import IndividualProfileCard from './IndividualProfileCard'
 import UserStocks from '../stocks/UserStocks'
 import FollowingList from '../friends/FollowingList'
 
+import Loading from '../Loading'
+
 import { fetchUser, fetchOtherUser } from '../../actions/userActions'
 
 import { Grid } from 'semantic-ui-react'
@@ -22,6 +24,8 @@ class Profile extends Component {
   render() {
     const currentUser = this.props.user
     const user = this.props.viewUser
+
+    if ( user === undefined || user.length === 0 || currentUser === undefined || currentUser.length === 0 ) return <Loading />
 
       return (
         <Grid>
