@@ -52,21 +52,54 @@ class Api::V1::StockDataController < ApplicationController
 
   def show
     query = params[:ticker].upcase
-    url = "https://api.intrinio.com/companies?identifier=#{query}"
-    response = api_call(url)
+    @stock = Stock.find_by( ticker: query )
 
-    # PRICES include date range
-    # https://api.intrinio.com/prices?identifier=AAPL
+    unless @stock
+      #QUERY TO CONFIRM STOCK IS VALID -> NEEDED B/C API_CALL WILL ERROR OUT IF STOCK NOT VALID
+      page = 1
+      url = "https://api.intrinio.com/companies?query=#{query}&page_number=#{page}"
+      exact_match = false
 
-    # INFO
-    # https://api.intrinio.com/companies?identifier=AA
+      until exact_match
+        response = api_call(url)
+        response_data = response['data']
 
-    stock_data = {
-      ticker: "#{response["ticker"]}",
-      name: "#{response["name"]}",
-    }
-    render json: stock_data
+        i = 0
+        until i == response_data.length
+          ticker = response_data[i]["ticker"].upcase.strip
+
+          if ticker == query && ticker.length == query.length
+            exact_match = true
+          end
+          i += 1
+        end
+
+        page += 1
+        break if page > response['total_pages']
+      end
+
+      if exact_match
+        url = "https://api.intrinio.com/companies?identifier=#{query}"
+        response = api_call(url)
+
+        @stock = Stock.create(ticker: query)
+        @stock.company_name = response["name"]
+        @stock.save
+      else
+        data = { ticker: "#{query}",
+                 company_name: "Stock does not exist or is not supported."
+               }
+        render json: data and return
+      end
+    end
+    render json: @stock
   end
+
+  # PRICES include date range
+  # https://api.intrinio.com/prices?identifier=AAPL
+
+  # INFO
+  # https://api.intrinio.com/companies?identifier=AA
 
   #news endpoint
   # https://api.intrinio.com/news?ticker=AAPL&ticker=MSFT

@@ -128,3 +128,9 @@ table td {
 .right {
   text-align: right;
 }
+
+/*OVERWRITE SEMANTIC UI STYLES */
+
+.ui.card>.content, .ui.cards>.card>.content {
+    border-top: 1px solid rgba(34,36,38,0) !important;
+}

@@ -1,8 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
-// import { Card } from 'semantic-ui-react'
-
 import FollowingList from '../friends/FollowingList'
 
 import StockHeader from './StockHeader'
@@ -14,6 +12,8 @@ import StockNews from './StockNews'
 import StockComments from './StockComments'
 import Loading from '../Loading'
 
+import { fetchUser } from '../../actions/userActions'
+
 import { fetchStockData } from '../../actions/stockActions'
 
 import '../../../public/stylesheets/master.css'
@@ -23,9 +23,11 @@ class StockShow extends Component {
   componentWillMount() {
     var stock = this.props.params.stock
     this.props.fetchStockData(stock)
+    this.props.fetchUser()
   }
 
   render() {
+    const user = this.props.user
     const stock = this.props.stock
     const followingList = {followers: []}
 
@@ -36,7 +38,7 @@ class StockShow extends Component {
         <StockHeader stock={stock}/>
 
         <br></br>
-        <SocialData />
+        <SocialData user={ user } stock={ stock }/>
         <div className='padding'></div>
 
         <div className='inline following-list'>
@@ -62,7 +64,8 @@ class StockShow extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    stock: state.stock
+    stock: state.stock,
+    user: state.user
   }
 }
 
@@ -70,6 +73,10 @@ function mapDispatchToProps(dispatch){
   return {
     fetchStockData: (params) => {
       let action = fetchStockData(params)
+      dispatch(action)
+    },
+    fetchUser: function(){
+      let action = fetchUser()
       dispatch(action)
     }
   }

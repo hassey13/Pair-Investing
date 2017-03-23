@@ -6,6 +6,7 @@ import { Search, Grid } from 'semantic-ui-react'
 
 import { queryStocks, queryUsers, startSearch } from '../../actions/searchActions'
 import { fetchOtherUser } from '../../actions/userActions'
+import { fetchStockData } from '../../actions/stockActions'
 
 class NewSearch extends React.Component {
 
@@ -21,6 +22,7 @@ class NewSearch extends React.Component {
 
     if ( category === "stocks") {
       browserHistory.push(`/stocks/${result.title}`)
+      this.props.fetchStockData(result.title)
     }
     else {
       browserHistory.push(`/profile/${result.description}`)
@@ -51,11 +53,10 @@ class NewSearch extends React.Component {
 
     var results = {}
     if ( !!upValue && `${upValue}` in this.props.search ) {
-
-      if ( 'stocks' in this.props.search[upValue] ) {
+      if ( 'stocks' in this.props.search[upValue] && this.props.search[upValue].stocks.results.length > 0 ) {
         results = {...results, stocks: this.props.search[upValue].stocks}
       }
-      if ( 'users' in this.props.search[upValue] ) {
+      if ( 'users' in this.props.search[upValue] && this.props.search[upValue].users.results.length > 0 ) {
         results = {...results, users: this.props.search[upValue].users}
       }
     }
@@ -100,9 +101,15 @@ const mapDispatchToProps = (dispatch) => {
       let action = startSearch(value)
       dispatch( action )
     },
+
     fetchOtherUser: function(username){
       let action = fetchOtherUser(username)
       dispatch( action )
+    },
+
+    fetchStockData: (params) => {
+      let action = fetchStockData(params)
+      dispatch(action)
     }
   }
 }
