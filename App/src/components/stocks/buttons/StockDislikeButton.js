@@ -2,22 +2,20 @@ import React, { Component } from 'react'
 import { Button, Label } from 'semantic-ui-react'
 import { connect } from 'react-redux'
 
-// import { recommendStock } from '../../actions/stockActions'
-
 class StockDislikeButton extends Component {
 
   handleDislike(stock_params) {
-    // this.props.recommendStock(stock_params)
     console.log(`I dislike ${this.props.stock.ticker}!`)
   }
 
   render() {
     // const user = this.props.user
     const stock = this.props.stock
+    const dislikes = this.props.dislikes
 
     return (
       <div className={'center'}>
-        <Button className={'social-button-like'} label={<Label>100</Label>} icon='thumbs down' content='Dislike' onClick={ this.handleDislike.bind(this,{ticker: stock.ticker, company_name: stock.company_name}) } />
+        <Button className={'social-button-like'} label={<Label>{ dislikes }</Label>} icon='thumbs down' content='Dislike' onClick={ this.handleDislike.bind(this,{ticker: stock.ticker, company_name: stock.company_name}) } />
       </div>
     )
   }

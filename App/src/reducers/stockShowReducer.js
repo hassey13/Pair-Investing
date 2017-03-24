@@ -7,6 +7,9 @@ export default function(state=[], action){
     case 'FETCH_STOCK_DATA':
       return Object.assign( {}, state, { data: action.payload.data } )
 
+    case 'FETCH_STOCK_SOCIAL_DATA':
+      return Object.assign( {}, state, { social: action.payload.data.social } )
+
     case 'FETCH_STOCK_NEWS':
       return Object.assign( {}, state, { news: action.payload.data } )
 
