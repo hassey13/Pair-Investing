@@ -12,7 +12,8 @@ class StockComments extends Component {
 
     return (
       <div>
-        <h1>StockComments</h1>
+        <h3>StockComments</h3>
+        <p>Coming Soon...</p>
       </div>
     )
   }

@@ -13,7 +13,7 @@ import Loading from '../Loading'
 
 import { fetchUser } from '../../actions/userActions'
 
-import { fetchStockData } from '../../actions/stockActions'
+import { fetchStock } from '../../actions/stockActions'
 import StockFollowButton from './buttons/StockFollowButton'
 import StockFollowingList from './components/StockFollowingList'
 
@@ -23,7 +23,8 @@ class StockShow extends Component {
 
   componentWillMount() {
     var stock = this.props.params.stock
-    this.props.fetchStockData(stock)
+    this.props.fetchStock(stock)
+    window.setTimeout(function() { true }, 250)
     this.props.fetchUser()
   }
 
@@ -49,13 +50,13 @@ class StockShow extends Component {
         </div>
 
         <div className='inline'>
-          <StockData />
+          <StockData ticker={ stock.ticker } />
           <div className='padding'></div>
-          <StockGraph />
+          <StockGraph ticker={ stock.ticker } />
           <div className='padding'></div>
-          <StockNews />
+          <StockNews ticker={ stock.ticker } />
           <div className='padding'></div>
-          <StockComments />
+          <StockComments stock={ stock } />
         </div>
 
       </div>
@@ -72,8 +73,8 @@ const mapStateToProps = (state) => {
 
 function mapDispatchToProps(dispatch){
   return {
-    fetchStockData: (params) => {
-      let action = fetchStockData(params)
+    fetchStock: (params) => {
+      let action = fetchStock(params)
       dispatch(action)
     },
     fetchUser: function(){
