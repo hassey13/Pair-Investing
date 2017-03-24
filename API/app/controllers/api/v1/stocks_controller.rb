@@ -18,20 +18,17 @@ class Api::V1::StocksController < ApplicationController
       date = "2017-02-16"
       get_current_user.stocks << @stock
 
-      url = "https://api.intrinio.com/prices?ticker=#{@stock.ticker}&start_date=#{date}&end_date=#{date}"
-      response = api_call(url)
+      # url = "https://api.intrinio.com/prices?ticker=#{@stock.ticker}&start_date=#{date}&end_date=#{date}"
+      # response = api_call(url)
 
-      response[:company_name] = @stock.company_name
-      response[:ticker] = @stock.ticker
-      response[:last_price] = @stock.last_price
-      render json: response
+      render json: {user: get_current_user.stocks, stock: @stock.users}
     end
   end
 
   def destroy
     @stock = Stock.find_by(ticker: params[:ticker])
     get_current_user.stock_users.find_by(stock_id: @stock.id).delete
-    render json: @stock.ticker
+    render json: {user: get_current_user.stocks, stock: @stock.users}
   end
 
   private

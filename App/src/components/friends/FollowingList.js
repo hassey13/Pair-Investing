@@ -8,12 +8,11 @@ import Loading from '../Loading'
 export default class FollowingList extends Component {
 
   render() {
-
     const following = this.props.following
 
     if ( following === undefined ) return ( <Loading /> )
 
-    if ( following.hasOwnProperty('friends') ) {
+    if ( 'friends' in following ) {
       if ( following.friends.length === 0 ) {
         return (
           <div className="following-list">
@@ -39,13 +38,25 @@ export default class FollowingList extends Component {
       }
     }
 
-    if ( following.hasOwnProperty('followers' ) ) {
+    if ( 'users' in following ) {
+      if ( following.length === 0 ) {
+        return (
+          <div className="following-list inline">
+            <Card>
+              <h5>Following { following.company_name }</h5>
+              <h5>No one is following this stock</h5>
+              <br></br>
+            </Card>
+          </div>
+        )
+      }
       return (
         <div className="following-list inline">
           <Card>
-            <h5>Following</h5>
-            <h5>No one is following this stock</h5>
-            <br></br>
+            <h5>Following { following.company_name }</h5>
+            <List animated verticalAlign='middle'>
+              { following.users.map( ( following, i ) => <LinkedFriendCard key={i} following={ following } /> ) }
+            </List>
           </Card>
         </div>
       )

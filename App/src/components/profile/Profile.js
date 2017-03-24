@@ -21,9 +21,17 @@ class Profile extends Component {
     this.props.fetchOtherUser(username)
   }
 
+  componentWillUpdate() {
+
+  }
+
   render() {
     const currentUser = this.props.user
-    const user = this.props.viewUser
+    let user = this.props.viewUser
+
+    if ( currentUser.username === user.username ) {
+      user = this.props.user
+    }
 
     if ( user === undefined || user.length === 0 || currentUser === undefined || currentUser.length === 0 ) return <Loading />
 
