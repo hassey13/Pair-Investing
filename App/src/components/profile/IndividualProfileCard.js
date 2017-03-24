@@ -4,7 +4,6 @@ import { browserHistory } from 'react-router'
 import { Card, Image } from 'semantic-ui-react'
 
 import ProfileButtons from './ProfileButtons'
-import Loading from '../Loading'
 
 import { followUser, unfollowUser } from '../../actions/userActions'
 
@@ -26,9 +25,6 @@ class IndividualProfileCard extends Component {
   render(){
     let user = this.props.user
     let currentUser = this.props.currentUser
-
-    // if ( this.props.currentUser !== 0 ) currentUser = this.props.currentUser
-    // if ( user === undefined || user.length === 0 ) return <Loading />
 
     if (user.bio === undefined ) user.bio = `${ user.first_name } is an awesome person.`
 

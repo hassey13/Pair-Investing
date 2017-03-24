@@ -12,6 +12,13 @@ class StockData extends Component {
     this.props.fetchStockData(ticker)
   }
 
+  componentWillReceiveProps(nextProps) {
+    if ( this.props.ticker !== nextProps.ticker) {
+      var ticker = nextProps.ticker
+      this.props.fetchStockData(ticker)
+    }
+  }
+
   render() {
     const stock = this.props.stock
 

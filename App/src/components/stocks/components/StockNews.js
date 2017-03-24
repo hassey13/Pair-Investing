@@ -13,21 +13,22 @@ class StockNews extends Component {
     this.props.fetchStockNews(ticker)
   }
 
+  componentWillReceiveProps(nextProps) {
+    if ( this.props.ticker !== nextProps.ticker) {
+      var ticker = nextProps.ticker
+      this.props.fetchStockNews(ticker)
+    }
+  }
+
+
   render() {
     const stock = this.props.stock
-    console.log(stock)
 
-    if ( stock === undefined || stock.length === 0 || !('data' in stock) ) return <Loading />
+    if ( stock === undefined || stock.length === 0 || !('news' in stock) ) return <Loading />
 
-    // <div className="article">
-    // <blockquote>
-    // <h4><a href="http://www.investors.com/news/the-bottom-has-formed-on-under-armour-so-buy-it-says-jefferies/?src=A00220A">'Bottom Has Formed' On Under Armour - So Buy It, Says Jefferies</a></h4>
-    // <p>Under Armour ( UAA) has a stronger brand than three years ago and people still love wearing activewear - those are the main take-aways from Jefferies upgrade of the Nike ( NKE) rival that are sending shares up early Friday.</p>
-    // </blockquote>
-    // </div>
     return (
       <div>
-        <h3>StockNews</h3>
+        <h3>Recent Headlines</h3>
         { stock.news.map( ( story, i ) => <LinkedNewsCard key={i} data={ story } /> ) }
       </div>
     )
