@@ -4,11 +4,7 @@ axios.defaults.baseURL = 'http://localhost:4000/api/v1/'
 axios.defaults.headers.common['AUTHORIZATION'] = sessionStorage.getItem('jwt')
 
 export const stockAdapter = {
-  fetchStock: (user) => {
-    if (!user) { return [] }
-    return axios.get(`fetchstocks/${user.email}`).then(response => response.data)
-  },
-
+  
   followStock: (params) => {
     return axios.post('stocks', params).then(response => response.data)
   },
