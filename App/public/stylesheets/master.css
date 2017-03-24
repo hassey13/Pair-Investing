@@ -118,6 +118,11 @@ hr.gradient-hr {
   width: 160px;
 }
 
+.article {
+  width: 600px;
+  
+}
+
 /* the collective results positions ontop of everything else*/
 .hover {
   height: 2.5em;
@@ -156,7 +161,7 @@ table tr {
 }
 
 table td {
-  width: 82%;
+  width: 130px;
   padding: .625em;
   text-align: center;
 }

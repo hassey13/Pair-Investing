@@ -8,7 +8,8 @@ Rails.application.routes.draw do
       get 'user/:username', to: 'users#show_by_username'
 
       post 'unfollow_stock', to: 'stocks#destroy', as: 'unfollow'
-      get 'fetchstocks/:email', to: 'stock_data#index', as: 'fetchstocks'
+      get 'stockdata/:ticker', to: 'stock_data#data', as: 'fetchstockdata'
+      get 'stocknews/:ticker', to: 'stock_data#news', as: 'fetchstocknews'
       get 'stocks/:ticker', to: 'stock_data#show'
 
       get 'searchstocks/:id', to: 'search#stocks', as: 'searchstocks'

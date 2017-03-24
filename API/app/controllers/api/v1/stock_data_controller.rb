@@ -4,50 +4,51 @@ require 'json'
 class Api::V1::StockDataController < ApplicationController
   # before_action :set_stock, only: [:show, :update, :destroy]
 
-  def index
-    @stocks = User.find_by(email: params[:email]).stocks
-    if @stocks.length > 0
-      stock_list = @stocks.collect {|stock|
+  def data
+    query = params[:ticker].upcase
+    @stock = Stock.find_by(ticker: query)
+    if @stock
+        # => API INTRINO
+      date = Date.today.to_s(:db)
+      url = "https://api.intrinio.com/prices?ticker=#{@stock.ticker}&start_date=#{date}&end_date=#{date}"
 
-    # => API INTRINO
-      # date = "2017-02-16"
-      # url = "https://api.intrinio.com/prices?ticker=#{stock.ticker}&start_date=#{date}&end_date=#{date}"
-      #
-      # response = api_call(url)
-      # response[:company_name] = stock.company_name
-      # response[:ticker] = stock.ticker
-      #
-      # url = "https://api.intrinio.com/historical_data?ticker=#{stock.ticker}&item=marketcap&start_date=#{date}&end_date=#{date}"
-      # market_cap = api_call(url)
-      #
-      # response["data"][0][:market_cap] = market_cap["data"][0]["value"]
-      #
-      # response
-    #   END OF API
+      response = api_call(url)
+      response[:stock] = {}
+      response[:stock][:company_name] = @stock.company_name
+      response[:stock][:ticker] = @stock.ticker
 
-    # => FAKE DATA TO AVOID API CALL
-        stock_data = {
-          ticker: "#{stock.ticker}",
-          company_name: "#{stock.company_name}",
-          # data: [{
-          #   open: 1,
-          #   close: 1,
-          #   high: 1,
-          #   low: 1,
-          #   market_cap: 1
-          # }]
-          data: [{
-            last_price: "#{stock.last_price}"
-          }]
-        }
-        stock_data
-      #  END OF FAKE DATA
-      }
+      url = "https://api.intrinio.com/data_point?identifier=#{@stock.ticker}&item=marketcap,52_week_low,52_week_high,dividendyield"
+      secondary_response = api_call(url)
 
-      render json: stock_list
+      response["data"][0][:market_cap] = secondary_response["data"][0]["value"]
+      response["data"][0][:low_52_week] = secondary_response["data"][1]["value"]
+      response["data"][0][:high_52_week] = secondary_response["data"][2]["value"]
+      response["data"][0][:dividendyield] = secondary_response["data"][3]["value"]
+      render json: response
     else
-      render json: {na: 'no stocks'}
+      stock_data = {
+        data: [{
+          open: "n/a",
+          close: "n/a",
+          day: "n/a",
+          week: "n/a",
+          market_cap: "n/a"
+        }]
+      }
+      render json: stock_data
     end
+  end
+
+  def news
+    query = params[:ticker].upcase
+
+    @stock = Stock.find_by( ticker: query )
+
+    url = "https://api.intrinio.com/news?ticker=#{query}"
+    response = api_call(url)
+
+    render json: { data: response["data"][0..2]}
+
   end
 
   def show
@@ -102,7 +103,7 @@ class Api::V1::StockDataController < ApplicationController
   # https://api.intrinio.com/companies?identifier=AA
 
   #news endpoint
-  # https://api.intrinio.com/news?ticker=AAPL&ticker=MSFT
+  # https://api.intrinio.com/news?ticker=AAPL
 
   private
 
