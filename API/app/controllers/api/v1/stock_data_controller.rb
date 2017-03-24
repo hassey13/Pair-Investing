@@ -8,6 +8,7 @@ class Api::V1::StockDataController < ApplicationController
     query = params[:ticker].upcase
     @stock = Stock.find_by(ticker: query)
     if @stock
+      response = {}
       response["data"] = {
         social: {
           likes: @stock.likes,
@@ -23,7 +24,7 @@ class Api::V1::StockDataController < ApplicationController
         }
       }
     end
-    render json: response 
+    render json: response
   end
 
   def data

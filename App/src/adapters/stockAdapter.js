@@ -4,7 +4,7 @@ axios.defaults.baseURL = 'http://localhost:4000/api/v1/'
 axios.defaults.headers.common['AUTHORIZATION'] = sessionStorage.getItem('jwt')
 
 export const stockAdapter = {
-  
+
   followStock: (params) => {
     return axios.post('stocks', params).then(response => response.data)
   },
@@ -15,6 +15,10 @@ export const stockAdapter = {
 
   fetchStock: (params) => {
     return axios.get(`stocks/${params}`).then(response => response.data)
+  },
+
+  fetchStockSocialData: (params) => {
+    return axios.get(`stocksocial/${params}`).then(response => response.data)
   },
 
   fetchStockData: (params) => {

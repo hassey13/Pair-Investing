@@ -5,6 +5,7 @@ const QUERY_STOCKS = 'QUERY_STOCKS'
 const REMOVE_STOCK = 'REMOVE_STOCK'
 const ADD_STOCK = 'ADD_STOCK'
 const FETCH_STOCK = 'FETCH_STOCK'
+const FETCH_STOCK_SOCIAL_DATA = 'FETCH_STOCK_SOCIAL_DATA'
 const FETCH_STOCK_DATA = 'FETCH_STOCK_DATA'
 const FETCH_STOCK_NEWS = 'FETCH_STOCK_NEWS'
 
@@ -49,6 +50,15 @@ export const fetchStock = (params) => {
 
   return {
     type: FETCH_STOCK,
+    payload: response
+  }
+}
+
+export const fetchStockSocialData = (params) => {
+  const response = stockAdapter.fetchStockSocialData(params)
+
+  return {
+    type: FETCH_STOCK_SOCIAL_DATA,
     payload: response
   }
 }
