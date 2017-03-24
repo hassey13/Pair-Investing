@@ -2,18 +2,19 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
 
-      post 'signup', to: 'users#create', as: 'signup'
-      post 'login', to: 'users#login', as: 'login'
+      post 'signup', to: 'users#create'
+      post 'login', to: 'users#login'
       get 'user', to: 'users#fetch_user'
       get 'user/:username', to: 'users#show_by_username'
 
-      post 'unfollow_stock', to: 'stocks#destroy', as: 'unfollow'
-      get 'stockdata/:ticker', to: 'stock_data#data', as: 'fetchstockdata'
-      get 'stocknews/:ticker', to: 'stock_data#news', as: 'fetchstocknews'
+      post 'unfollow_stock', to: 'stocks#destroy'
+      get 'stockdata/:ticker', to: 'stock_data#data'
+      get 'stocknews/:ticker', to: 'stock_data#news'
+      get 'stocksocial/:ticker', to: 'stock_data#social'
       get 'stocks/:ticker', to: 'stock_data#show'
 
-      get 'searchstocks/:id', to: 'search#stocks', as: 'searchstocks'
-      get 'searchusers/:id', to: 'search#users', as: 'searchusers'
+      get 'searchstocks/:id', to: 'search#stocks'
+      get 'searchusers/:id', to: 'search#users'
 
       post 'unfollow_user', to: 'friends#destroy'
       post 'follow_user', to: 'friends#create'
