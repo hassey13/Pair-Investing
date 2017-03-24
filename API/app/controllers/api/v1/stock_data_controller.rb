@@ -4,6 +4,28 @@ require 'json'
 class Api::V1::StockDataController < ApplicationController
   # before_action :set_stock, only: [:show, :update, :destroy]
 
+  def social
+    query = params[:ticker].upcase
+    @stock = Stock.find_by(ticker: query)
+    if @stock
+      response["data"] = {
+        social: {
+          likes: @stock.likes,
+          dislikes: @stock.dislikes
+        }
+      }
+
+    else
+      response["data"] = {
+        social: {
+          likes: 0,
+          dislikes: 0
+        }
+      }
+    end
+    render json: response 
+  end
+
   def data
     query = params[:ticker].upcase
     @stock = Stock.find_by(ticker: query)
