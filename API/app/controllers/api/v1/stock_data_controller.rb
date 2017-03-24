@@ -7,7 +7,7 @@ class Api::V1::StockDataController < ApplicationController
   def data
     query = params[:ticker].upcase
     @stock = Stock.find_by(ticker: query)
-    if @stock
+    if @stock && false
         # => API INTRINO
       date = Date.today.to_s(:db)
       url = "https://api.intrinio.com/prices?ticker=#{@stock.ticker}&start_date=#{date}&end_date=#{date}"
@@ -44,8 +44,20 @@ class Api::V1::StockDataController < ApplicationController
 
     @stock = Stock.find_by( ticker: query )
 
-    url = "https://api.intrinio.com/news?ticker=#{query}"
-    response = api_call(url)
+    if @stock && false
+
+      url = "https://api.intrinio.com/news?ticker=#{query}"
+      response = api_call(url)
+
+    else
+      response = {
+        data: [{
+          url: "#",
+          title: "Eric is the greatest!"
+        }]
+      }
+      render json: response and return
+    end
 
     render json: { data: response["data"][0..2]}
 
