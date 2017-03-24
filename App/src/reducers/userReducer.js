@@ -25,12 +25,11 @@ export default function userReducer( state=[], action ){
         return action.payload
       }
 
-    case 'REMOVE_STOCK':
-      const new_state = state.stocks.filter(stock => stock.ticker !== action.payload)
-      return Object.assign({}, state, { stocks: new_state })
-
     case 'ADD_STOCK':
-      return Object.assign({}, state, { stocks: [...state.stocks, action.payload] } )
+      return Object.assign({}, state, { stocks: action.payload.user } )
+
+    case 'REMOVE_STOCK':
+      return Object.assign({}, state, { stocks: action.payload.user })
 
     case 'FOLLOW_USER':
       return Object.assign({}, state, { friends: action.payload } )

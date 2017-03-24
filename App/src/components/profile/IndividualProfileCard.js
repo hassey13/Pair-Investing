@@ -16,21 +16,19 @@ class IndividualProfileCard extends Component {
 
   handleFollow(username) {
     this.props.followUser(username)
-    window.location.reload()
   }
 
 
   handleUnfollow(username) {
     this.props.unfollowUser(username)
-    window.location.reload()
   }
 
   render(){
     let user = this.props.user
-    let currentUser = undefined
+    let currentUser = this.props.currentUser
 
-    if ( this.props.currentUser !== 0 ) currentUser = this.props.currentUser
-    if ( user === undefined || user.length === 0 ) return <Loading />
+    // if ( this.props.currentUser !== 0 ) currentUser = this.props.currentUser
+    // if ( user === undefined || user.length === 0 ) return <Loading />
 
     if (user.bio === undefined ) user.bio = `${ user.first_name } is an awesome person.`
 

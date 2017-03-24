@@ -3,18 +3,19 @@ import { connect } from 'react-redux'
 
 import FollowingList from '../friends/FollowingList'
 
-import StockHeader from './StockHeader'
-import StockData from './StockData'
-import SocialData from './SocialData'
-import StockGraph from './StockGraph'
-
-import StockNews from './StockNews'
-import StockComments from './StockComments'
+import StockHeader from './components/StockHeader'
+import StockData from './components/StockData'
+import SocialData from './components/SocialData'
+import StockGraph from './components/StockGraph'
+import StockNews from './components/StockNews'
+import StockComments from './components/StockComments'
 import Loading from '../Loading'
 
 import { fetchUser } from '../../actions/userActions'
 
 import { fetchStockData } from '../../actions/stockActions'
+import StockFollowButton from './buttons/StockFollowButton'
+import StockFollowingList from './components/StockFollowingList'
 
 import '../../../public/stylesheets/master.css'
 
@@ -29,22 +30,22 @@ class StockShow extends Component {
   render() {
     const user = this.props.user
     const stock = this.props.stock
-    const followingList = {followers: []}
 
-    if ( stock === undefined || stock.length === 0 ) return <Loading />
+    if ( stock === undefined || stock.length === 0 || user === undefined || user.length === 0 ) return <Loading />
 
     return (
       <div>
         <StockHeader stock={stock}/>
-
-        <br></br>
+        <br/>
+        <StockFollowButton stock={ stock } user={ user } />
+        <br/>
         <SocialData user={ user } stock={ stock }/>
         <div className='padding'></div>
 
         <div className='inline following-list'>
-          <FollowingList following={followingList} />
+          <FollowingList following={ stock } />
           <div className='padding'></div>
-          <h3 className='center'>See Stocks You Follow:</h3>
+          <StockFollowingList user={ user } />
         </div>
 
         <div className='inline'>
