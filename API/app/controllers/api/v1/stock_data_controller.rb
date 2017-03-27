@@ -30,9 +30,10 @@ class Api::V1::StockDataController < ApplicationController
   def data
     query = params[:ticker].upcase
     @stock = Stock.find_by(ticker: query)
-    if @stock && false
+    if @stock && should_api_be_called?
         # => API INTRINO
       date = Date.today.to_s(:db)
+      date = "2017-03-27"
       url = "https://api.intrinio.com/prices?ticker=#{@stock.ticker}&start_date=#{date}&end_date=#{date}"
 
       response = api_call(url)
@@ -67,7 +68,7 @@ class Api::V1::StockDataController < ApplicationController
 
     @stock = Stock.find_by( ticker: query )
 
-    if @stock && false
+    if @stock && should_api_be_called?
 
       url = "https://api.intrinio.com/news?ticker=#{query}"
       response = api_call(url)
@@ -83,6 +84,37 @@ class Api::V1::StockDataController < ApplicationController
     end
 
     render json: { data: response["data"][0..2]}
+
+  end
+
+  def prices
+    query = params[:ticker].upcase
+
+    @stock = Stock.find_by( ticker: query )
+
+    if @stock && should_api_be_called?
+
+      url = "https://api.intrinio.com/prices?identifier=#{query}&start_date=2016-03-27"
+      response = api_call(url)
+      formatted_response = { labels: [], prices: [] }
+
+      response["data"].each { |data|
+        date = data["date"][5,data["date"].length]
+        formatted_response[:labels].unshift(date)
+        formatted_response[:prices].unshift(data["close"])
+      }
+
+    else
+      response = {
+        data: {
+          labels: ["3/20", "3/21", "3/22", "3/23", "3/24"],
+          prices: ["12.00", "12.81", "13.43", "12.63", "13.10"]
+        }
+      }
+      render json: response and return
+    end
+
+    render json: { data: formatted_response}
 
   end
 
@@ -114,7 +146,7 @@ class Api::V1::StockDataController < ApplicationController
         break if page > response['total_pages']
       end
 
-      if exact_match
+      if exact_match && should_api_be_called?
         url = "https://api.intrinio.com/companies?identifier=#{query}"
         response = api_call(url)
 

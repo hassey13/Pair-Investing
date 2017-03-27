@@ -6,7 +6,7 @@ import { Search, Grid } from 'semantic-ui-react'
 
 import { queryStocks, queryUsers, startSearch } from '../../actions/searchActions'
 import { fetchOtherUser } from '../../actions/userActions'
-import { fetchStockData } from '../../actions/stockActions'
+import { fetchStock } from '../../actions/stockActions'
 
 class NewSearch extends React.Component {
 
@@ -22,7 +22,7 @@ class NewSearch extends React.Component {
 
     if ( category === "stocks") {
       browserHistory.push(`/stocks/${result.title}`)
-      this.props.fetchStockData(result.title)
+      this.props.fetchStock(result.title)
     }
     else {
       browserHistory.push(`/profile/${result.description}`)
@@ -107,8 +107,8 @@ const mapDispatchToProps = (dispatch) => {
       dispatch( action )
     },
 
-    fetchStockData: (params) => {
-      let action = fetchStockData(params)
+    fetchStock: (params) => {
+      let action = fetchStock(params)
       dispatch(action)
     }
   }

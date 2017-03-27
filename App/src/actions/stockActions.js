@@ -7,6 +7,7 @@ const ADD_STOCK = 'ADD_STOCK'
 const FETCH_STOCK = 'FETCH_STOCK'
 const FETCH_STOCK_SOCIAL_DATA = 'FETCH_STOCK_SOCIAL_DATA'
 const FETCH_STOCK_DATA = 'FETCH_STOCK_DATA'
+const FETCH_STOCK_PRICE_HISTORY = 'FETCH_STOCK_PRICE_HISTORY'
 const FETCH_STOCK_NEWS = 'FETCH_STOCK_NEWS'
 
 export const fetchStocksOwned = (user) => {
@@ -68,6 +69,15 @@ export const fetchStockData = (params) => {
 
   return {
     type: FETCH_STOCK_DATA,
+    payload: response
+  }
+}
+
+export const fetchStockPriceHistory = (params) => {
+  const response = stockAdapter.fetchStockPriceHistory(params)
+
+  return {
+    type: FETCH_STOCK_PRICE_HISTORY,
     payload: response
   }
 }

@@ -10,6 +10,7 @@ Rails.application.routes.draw do
       post 'unfollow_stock', to: 'stocks#destroy'
       get 'stockdata/:ticker', to: 'stock_data#data'
       get 'stocknews/:ticker', to: 'stock_data#news'
+      get 'stockprices/:ticker', to: 'stock_data#prices'
       get 'stocksocial/:ticker', to: 'stock_data#social'
       get 'stocks/:ticker', to: 'stock_data#show'
 

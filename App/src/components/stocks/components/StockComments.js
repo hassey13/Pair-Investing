@@ -8,6 +8,9 @@ class StockComments extends Component {
       <div>
         <h3>Comments</h3>
         <p>Coming Soon...</p>
+        <div className='padding'></div>
+        <div className='padding'></div>
+        <div className='padding'></div>
       </div>
     )
   }

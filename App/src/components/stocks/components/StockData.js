@@ -23,6 +23,18 @@ class StockData extends Component {
     const stock = this.props.stock
 
     if ( 'data' in stock ) {
+
+      let marketCap = this.props.stock.data[0].market_cap
+
+      if ( marketCap / 1000000000 > 1 ) {
+        marketCap = `${(this.props.stock.data[0].market_cap/1000000000).toFixed(2)} Bil`
+      }
+      else if ( marketCap / 1000000 > 1 ) {
+        marketCap = `${(this.props.stock.data[0].market_cap/1000000).toFixed(2)} Mil`
+      }
+      else {
+        marketCap = "< 1 Mil"
+      }
       return (
         <div className='center'>
         <h3>Summary</h3>
@@ -39,7 +51,7 @@ class StockData extends Component {
         </tr>
         <tr>
         <td className='left'>Market Cap:</td>
-        <td className='right'>{ `${this.props.stock.data[0].market_cap/1000000} Mil` }</td>
+        <td className='right'>{ marketCap }</td>
         </tr>
         </tbody>
         </table>
@@ -55,7 +67,7 @@ class StockData extends Component {
         </tr>
         <tr>
         <td className='left'>Dividend/ Yield:</td>
-        <td className='right'>{ `${(this.props.stock.data[0].dividendyield)*100} %` }</td>
+        <td className='right'>{ `${((this.props.stock.data[0].dividendyield)*100).toFixed(2)} %` }</td>
         </tr>
         </tbody>
         </table>

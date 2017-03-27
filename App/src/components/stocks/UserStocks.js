@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-// import { connect } from 'react-redux'
 
 import LinkedStockCard from './components/LinkedStockCard'
 import Loading from '../Loading'
@@ -10,21 +9,19 @@ class UserStocks extends Component {
 
   render() {
 
-    const userStocks = this.props.user.stocks
+    const user = this.props.user
 
-    if (!userStocks) return <Loading />
+    if ( !( 'stocks' in user ) ) return <Loading />
 
     return (
       <div>
         <h3>Followed Stocks</h3>
         <Card.Group itemsPerRow={3}>
-          { userStocks.map( ( stock, i ) => <LinkedStockCard key={i} stock={stock} /> ) }
+          { user.stocks.map( ( stock, i ) => <LinkedStockCard key={i} stock={stock} /> ) }
         </Card.Group>
       </div>
     )
   }
 }
-
-
 
 export default UserStocks

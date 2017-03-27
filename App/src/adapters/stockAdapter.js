@@ -25,6 +25,10 @@ export const stockAdapter = {
     return axios.get(`stockdata/${params}`).then(response => response.data)
   },
 
+  fetchStockPriceHistory: (params) => {
+    return axios.get(`stockprices/${params}`).then(response => response.data)
+  },
+
   fetchStockNews: (params) => {
     return axios.get(`stocknews/${params}`).then(response => response.data)
   }
