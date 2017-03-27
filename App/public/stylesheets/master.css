@@ -1,4 +1,5 @@
 
+
 hr {
   border-top: 1px solid #8c8b8b;
   border-bottom: 1px solid #fff;
@@ -120,7 +121,7 @@ hr.gradient-hr {
 
 .article {
   width: 600px;
-  
+
 }
 
 /* the collective results positions ontop of everything else*/
@@ -172,6 +173,20 @@ table td {
 
 .right {
   text-align: right;
+}
+
+#chartjs-tooltip {
+    opacity: 0;
+    position: absolute;
+    background: rgba(0, 0, 0, .5);
+    color: white;
+    padding: 3px;
+    border-radius: 3px;
+    -webkit-transition: all .1s ease;
+    transition: all .1s ease;
+    pointer-events: none;
+    -webkit-transform: translate(-50%, 0);
+    transform: translate(-50%, 0);
 }
 
 /*OVERWRITE SEMANTIC UI STYLES */
