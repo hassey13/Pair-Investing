@@ -10,13 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170324201024) do
+ActiveRecord::Schema.define(version: 20170328133918) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "comments", force: :cascade do |t|
     t.text     "message"
+    t.integer  "user_id"
+    t.integer  "stock_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "dislikes", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "stock_id"
     t.datetime "created_at", null: false
@@ -30,6 +37,13 @@ ActiveRecord::Schema.define(version: 20170324201024) do
     t.datetime "updated_at", null: false
     t.index ["friend_id", "user_id"], name: "index_friends_on_friend_id_and_user_id", unique: true, using: :btree
     t.index ["user_id", "friend_id"], name: "index_friends_on_user_id_and_friend_id", unique: true, using: :btree
+  end
+
+  create_table "likes", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "stock_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "stock_users", force: :cascade do |t|

@@ -4,29 +4,6 @@ require 'json'
 class Api::V1::StockDataController < ApplicationController
   # before_action :set_stock, only: [:show, :update, :destroy]
 
-  def social
-    query = params[:ticker].upcase
-    @stock = Stock.find_by(ticker: query)
-    if @stock
-      response = {}
-      response["data"] = {
-        social: {
-          likes: @stock.likes,
-          dislikes: @stock.dislikes
-        }
-      }
-
-    else
-      response["data"] = {
-        social: {
-          likes: 0,
-          dislikes: 0
-        }
-      }
-    end
-    render json: response
-  end
-
   def data
     query = params[:ticker].upcase
     @stock = Stock.find_by(ticker: query)
@@ -65,7 +42,6 @@ class Api::V1::StockDataController < ApplicationController
 
   def news
     query = params[:ticker].upcase
-
     @stock = Stock.find_by( ticker: query )
 
     if @stock && should_api_be_called?
@@ -84,16 +60,12 @@ class Api::V1::StockDataController < ApplicationController
     end
 
     render json: { data: response["data"][0..2]}
-
   end
 
   def prices
     query = params[:ticker].upcase
-
     @stock = Stock.find_by( ticker: query )
-
     if @stock && should_api_be_called?
-
       url = "https://api.intrinio.com/prices?identifier=#{query}&start_date=2016-03-27"
       response = api_call(url)
       formatted_response = { labels: [], prices: [] }
@@ -103,7 +75,6 @@ class Api::V1::StockDataController < ApplicationController
         formatted_response[:labels].unshift(date)
         formatted_response[:prices].unshift(data["close"])
       }
-
     else
       response = {
         data: {
@@ -113,9 +84,7 @@ class Api::V1::StockDataController < ApplicationController
       }
       render json: response and return
     end
-
     render json: { data: formatted_response}
-
   end
 
   def show
@@ -135,13 +104,11 @@ class Api::V1::StockDataController < ApplicationController
         i = 0
         until i == response_data.length
           ticker = response_data[i]["ticker"].upcase.strip
-
           if ticker == query && ticker.length == query.length
             exact_match = true
           end
           i += 1
         end
-
         page += 1
         break if page > response['total_pages']
       end
@@ -162,16 +129,5 @@ class Api::V1::StockDataController < ApplicationController
     end
     render json: @stock
   end
-
-  # PRICES include date range
-  # https://api.intrinio.com/prices?identifier=AAPL
-
-  # INFO
-  # https://api.intrinio.com/companies?identifier=AA
-
-  #news endpoint
-  # https://api.intrinio.com/news?ticker=AAPL
-
   private
-
 end

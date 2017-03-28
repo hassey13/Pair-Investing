@@ -3,4 +3,6 @@ class UserSerializer < ActiveModel::Serializer
 
   has_many :stocks, through: :stock_users
   has_many :friends, through: :friends
+  has_many :likes
+  has_many :dislikes
 end

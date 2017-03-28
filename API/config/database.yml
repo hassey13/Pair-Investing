@@ -18,7 +18,7 @@ default: &default
   adapter: postgresql
   encoding: unicode
   username: "postgres"
-  password: <%= ENV['SOCIAL_STOCK_API_DATABASE_PASSWORD'] %>
+  password: "E13Al24,"
 
     # <%= ENV['SOCIAL_STOCK_API_DATABASE_PASSWORD'] %>
   # For details on connection pooling, see rails configuration guide
