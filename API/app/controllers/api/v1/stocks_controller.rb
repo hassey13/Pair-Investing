@@ -1,5 +1,5 @@
 class Api::V1::StocksController < ApplicationController
-  # before_action :set_stock, only: [:show, :update]
+  # before_action
 
   def index
     @stocks = Stock.all
@@ -13,16 +13,29 @@ class Api::V1::StocksController < ApplicationController
 
   def create
     @stock = Stock.create_with(company_name: stock_params[:company_name]).find_or_create_by(ticker: params[:ticker])
-
     if @stock.save
       date = "2017-02-16"
       get_current_user.stocks << @stock
-
-      # url = "https://api.intrinio.com/prices?ticker=#{@stock.ticker}&start_date=#{date}&end_date=#{date}"
-      # response = api_call(url)
-
       render json: {user: get_current_user.stocks, stock: @stock.users}
     end
+  end
+
+  def like
+    @stock = Stock.find_by(ticker: params[:ticker])
+    if @stock && get_current_user
+      @like = Like.new(user_id: get_current_user.id, stock_id: @stock.id)
+      @like.save
+    end
+    render json: { likes: @stock.likes }
+  end
+
+  def dislike
+    @stock = Stock.find_by(ticker: params[:ticker])
+    if @stock && get_current_user
+      @dislike = Dislike.new(user_id: get_current_user.id, stock_id: @stock.id)
+      @dislike.save
+    end
+    render json: { dislikes: @stock.dislikes }
   end
 
   def destroy
@@ -32,9 +45,6 @@ class Api::V1::StocksController < ApplicationController
   end
 
   private
-    def set_stock
-      @stock = Stock.find(params[:id])
-    end
 
     def stock_params
       params.require(:stock).permit(:ticker, :company_name)

@@ -8,10 +8,12 @@ Rails.application.routes.draw do
       get 'user/:username', to: 'users#show_by_username'
 
       post 'unfollow_stock', to: 'stocks#destroy'
+      post 'like_stock', to: 'stocks#like'
+      post 'dislike_stock', to: 'stocks#dislike'
+
       get 'stockdata/:ticker', to: 'stock_data#data'
       get 'stocknews/:ticker', to: 'stock_data#news'
       get 'stockprices/:ticker', to: 'stock_data#prices'
-      get 'stocksocial/:ticker', to: 'stock_data#social'
       get 'stocks/:ticker', to: 'stock_data#show'
 
       get 'searchstocks/:id', to: 'search#stocks'

@@ -6,6 +6,8 @@ class User < ApplicationRecord
   has_many :comments
   has_many :stock_users
   has_many :stocks, through: :stock_users
+  has_many :likes
+  has_many :dislikes
 
 
   has_and_belongs_to_many :friends,
