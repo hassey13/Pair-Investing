@@ -38,10 +38,22 @@ class Api::V1::StocksController < ApplicationController
     render json: { dislikes: @stock.dislikes }
   end
 
+  def destroy_like
+    @stock = Stock.find_by(ticker: params[:ticker])
+    get_current_user.likes.find_by(stock_id: @stock.id).delete
+    render json: { likes: @stock.likes }
+  end
+
+  def destroy_dislike
+    @stock = Stock.find_by(ticker: params[:ticker])
+    get_current_user.dislikes.find_by(stock_id: @stock.id).delete
+    render json: { dislikes: @stock.dislikes }
+  end
+
   def destroy
     @stock = Stock.find_by(ticker: params[:ticker])
     get_current_user.stock_users.find_by(stock_id: @stock.id).delete
-    render json: {user: get_current_user.stocks, stock: @stock.users}
+    render json: { user: get_current_user.stocks, stock: @stock.users }
   end
 
   private

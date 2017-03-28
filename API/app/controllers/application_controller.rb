@@ -2,7 +2,7 @@ class ApplicationController < ActionController::API
   # Use callbacks to share common setup or constraints between actions.
 
   def should_api_be_called?
-    return false
+    return true
   end
 
   def get_current_user

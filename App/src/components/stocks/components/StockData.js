@@ -25,6 +25,11 @@ class StockData extends Component {
     if ( 'data' in stock ) {
 
       let marketCap = this.props.stock.data[0].market_cap
+      let dividendyield = ((this.props.stock.data[0].dividendyield)*100).toFixed(2)
+
+      if ( isNaN(dividendyield) ) {
+        dividendyield = "0.00"
+      }
 
       if ( marketCap / 1000000000 > 1 ) {
         marketCap = `${(this.props.stock.data[0].market_cap/1000000000).toFixed(2)} Bil`
@@ -67,7 +72,7 @@ class StockData extends Component {
         </tr>
         <tr>
         <td className='left'>Dividend/ Yield:</td>
-        <td className='right'>{ `${((this.props.stock.data[0].dividendyield)*100).toFixed(2)} %` }</td>
+        <td className='right'>{ `${dividendyield} %` }</td>
         </tr>
         </tbody>
         </table>

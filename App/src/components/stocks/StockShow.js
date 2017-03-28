@@ -24,7 +24,6 @@ class StockShow extends Component {
   componentWillMount() {
     var stock = this.props.params.stock
     this.props.fetchStock(stock)
-    window.setTimeout(function() { true }, 250)
     this.props.fetchUser()
   }
 
