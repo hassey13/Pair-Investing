@@ -9,29 +9,19 @@ import StockSellButton from '../buttons/StockSellButton'
 
 import Loading from '../../Loading'
 
-import { fetchStockSocialData } from '../../../actions/stockActions'
-
 class SocialData extends Component {
-
-  componentWillReceiveProps(nextProps) {
-    if ( this.props.ticker !== nextProps.ticker || !('social' in nextProps.stock) ) {
-      var ticker = nextProps.stock.ticker
-      this.props.fetchStockSocialData(ticker)
-    }
-  }
 
   render() {
     const stock = this.props.stock
-
-    if ( !('social' in stock) ) return <Loading />
+    const user = this.props.user
 
     return (
       <div>
         <hr className='gradient-hr' />
         <div className='social-button-container'>
           <StockRecommendButton stock={ stock } />
-          <StockLikeButton stock={ stock } likes={ stock.social.likes } />
-          <StockDislikeButton stock={ stock } dislikes={ stock.social.dislikes } />
+          <StockLikeButton user={ user } stock={ stock } />
+          <StockDislikeButton user={ user } stock={ stock } />
           <StockBuyButton stock={ stock } />
           <StockSellButton stock={ stock } />
         </div>
@@ -41,13 +31,4 @@ class SocialData extends Component {
   }
 }
 
-const mapDispatchToProps = ( dispatch ) => {
-  return {
-    fetchStockSocialData: function(stock_params){
-      let action = fetchStockSocialData(stock_params)
-      dispatch( action )
-    }
-  }
-}
-
-export default connect(null , mapDispatchToProps)( SocialData )
+export default connect(null , null)( SocialData )

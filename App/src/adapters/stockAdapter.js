@@ -13,12 +13,24 @@ export const stockAdapter = {
     return axios.post('unfollow_stock', params).then(response => response.data)
   },
 
-  fetchStock: (params) => {
-    return axios.get(`stocks/${params}`).then(response => response.data)
+  likeStock: (params) => {
+    return axios.post('like_stock', params).then(response => response.data)
   },
 
-  fetchStockSocialData: (params) => {
-    return axios.get(`stocksocial/${params}`).then(response => response.data)
+  dislikeStock: (params) => {
+    return axios.post('dislike_stock', params).then(response => response.data)
+  },
+
+  removeLikeStock: (params) => {
+    return axios.post('remove_like_stock', params).then(response => response.data)
+  },
+
+  removeDislikeStock: (params) => {
+    return axios.post('remove_dislike_stock', params).then(response => response.data)
+  },
+
+  fetchStock: (params) => {
+    return axios.get(`stocks/${params}`).then(response => response.data)
   },
 
   fetchStockData: (params) => {
