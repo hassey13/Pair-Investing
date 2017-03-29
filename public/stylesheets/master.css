@@ -1,0 +1,196 @@
+
+
+hr {
+  border-top: 1px solid #8c8b8b;
+  border-bottom: 1px solid #fff;
+}
+
+hr.gradient-hr {
+  border: 0;
+  height: 1px;
+  background-image: -webkit-linear-gradient(left, #f0f0f0, #8c8b8b, #f0f0f0);
+  background-image: -moz-linear-gradient(left, #f0f0f0, #8c8b8b, #f0f0f0);
+  background-image: -ms-linear-gradient(left, #f0f0f0, #8c8b8b, #f0f0f0);
+  background-image: -o-linear-gradient(left, #f0f0f0, #8c8b8b, #f0f0f0);
+}
+
+.link {
+  cursor: pointer;
+}
+
+.padding {
+  padding: 25px;
+}
+
+.inline {
+  display: inline-block !important;
+}
+
+.center {
+  text-align: center;
+}
+
+#logo-png {
+    width: 2.5em;
+}
+
+.body-container {
+  margin-top: 2em;
+
+}
+
+.signup {
+  text-align: center;
+  width: 500px;
+  margin: 0 auto;
+}
+
+.login {
+  text-align: center;
+  width: 400px;
+  margin: 0 auto;
+}
+
+/* individual results*/
+/*.padded{
+  padding: 1em;
+}
+
+.padded, .stock-header, .follow-button {
+  display: inline;
+}*/
+
+.following-list {
+  vertical-align: top;
+  padding-right: 25px;
+}
+
+.follow-button {
+  float: right;
+}
+
+.stock-header {
+  float:left;
+}
+
+/* profile card*/
+.card{
+  position: relative;
+}
+
+.profileButton {
+  width: 100px;
+}
+
+/* unfollow icon for stocks */
+.unfollow-icon {
+  margin-left: 222px !important;
+  margin-top: -10px !important;
+}
+
+.unfollow-icon:hover {
+  cursor: pointer;
+}
+
+.social-button-container {
+  padding: 15px;
+  text-align: center;
+}
+
+.social-button-container div {
+  display: inline-block;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.social-button {
+  height: 36px;
+  width: 120px;
+  padding: 0 !important;
+}
+
+.social-button-follow {
+  height: 20px;
+  width: 90px;
+  padding: 0 !important;
+}
+
+.social-button-like {
+  width: 160px;
+}
+
+.article {
+  width: 600px;
+
+}
+
+/* the collective results positions ontop of everything else*/
+.hover {
+  height: 2.5em;
+  width: 32em;
+  border-bottom-left-radius: 0.5em;
+  border-bottom-right-radius: 0.5em;
+}
+
+.following-list h5{
+  text-align: center;
+}
+
+.ui.card {
+  padding: 5px 15px 15px 15px;
+}
+
+table {
+  font-family: "Open Sans", sans-serif;
+  display: inline-block;
+  margin: 0;
+  padding-left: 20px;
+  padding-right: 20px;
+  table-layout: fixed;
+  line-height: 1.25;
+}
+
+table caption {
+  font-size: 1.5em;
+  margin: .5em 0 .75em;
+}
+
+table tr {
+  background: #fff;
+  border-bottom: 1px solid #ddd;
+  padding: .35em;
+}
+
+table td {
+  width: 130px;
+  padding: .625em;
+  text-align: center;
+}
+
+.left {
+  text-align: left;
+}
+
+.right {
+  text-align: right;
+}
+
+#chartjs-tooltip {
+    opacity: 0;
+    position: absolute;
+    background: rgba(0, 0, 0, .5);
+    color: white;
+    padding: 3px;
+    border-radius: 3px;
+    -webkit-transition: all .1s ease;
+    transition: all .1s ease;
+    pointer-events: none;
+    -webkit-transform: translate(-50%, 0);
+    transform: translate(-50%, 0);
+}
+
+/*OVERWRITE SEMANTIC UI STYLES */
+
+.ui.card>.content, .ui.cards>.card>.content {
+    border-top: 1px solid rgba(34,36,38,0) !important;
+}
