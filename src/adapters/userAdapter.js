@@ -1,7 +1,8 @@
 import axios from 'axios'
 import { browserHistory } from 'react-router'
+import { URL } from './index.js'
 
-axios.defaults.baseURL = 'https://connected-investing-api.herokuapp.com/api/v1/'
+axios.defaults.baseURL = URL
 axios.defaults.headers.common['AUTHORIZATION'] = sessionStorage.getItem('jwt')
 
 export const userAdapter = {
