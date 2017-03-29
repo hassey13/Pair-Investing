@@ -46,12 +46,22 @@ class SignUp extends Component {
   render(){
     if(!!sessionStorage.jwt) browserHistory.push('/')
 
+    // UNDERCONSTRUCTION:
+    // <Form.Field>
+    //   <label>Avatar</label>
+    //   <input name='avatar' onChange={this.handleChange} />
+    // </Form.Field>
+    //
+    // <br/>
+    // <Form.Checkbox inline  name='terms' label='I agree to the terms and conditions' />
+
     return (
       <div className='center signup'>
         <Message
           attached
-          header='Welcome to Pair Investing!'
-          content='Fill out the form below to sign-up for a new account'
+          header='Welcome to Pair Investing! *BETA'
+          content='Fill out the form below to sign-up for a new account.  All fields should be filled out feel free to use fake names ;)'
+          color='blue'
         />
 
       <Form className='attached fluid segment signup' onSubmit={this.handleSubmit}>
@@ -85,15 +95,6 @@ class SignUp extends Component {
             <label>Last Name</label>
             <input name='last_name' onChange={this.handleChange} />
           </Form.Field>
-
-          <Form.Field>
-            <label>Avatar</label>
-            <input name='avatar' onChange={this.handleChange} />
-          </Form.Field>
-
-          <br/>
-          <Form.Checkbox inline  name='terms' label='I agree to the terms and conditions' />
-          <br/><br/>
 
           <Button type='submit' color='blue'>Sign Up</Button>
 

@@ -41,13 +41,13 @@ hr.gradient-hr {
 
 .signup {
   text-align: center;
-  width: 600px;
+  width: 500px;
   margin: 0 auto;
 }
 
 .login {
   text-align: center;
-  width: 600px;
+  width: 400px;
   margin: 0 auto;
 }
 
@@ -79,7 +79,7 @@ hr.gradient-hr {
 }
 
 .profileButton {
-  width: 120px;
+  width: 100px;
 }
 
 /* unfollow icon for stocks */

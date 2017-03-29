@@ -23,8 +23,12 @@ class IndividualProfileCard extends Component {
   }
 
   render(){
+    const loggedInUser = this.props.user
     let user = this.props.user
-    let currentUser = this.props.currentUser
+
+    if ( ('view' in user ) ) {
+      user = this.props.user.view
+    }
 
     if (user.bio === undefined ) user.bio = `${ user.first_name } is an awesome person.`
 
@@ -38,7 +42,7 @@ class IndividualProfileCard extends Component {
           </Card.Content>
           <Card.Content extra>
 
-              <ProfileButtons user={ user } currentUser={ currentUser } />
+              <ProfileButtons user={ loggedInUser } />
 
             </Card.Content>
       </Card>

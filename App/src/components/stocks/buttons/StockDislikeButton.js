@@ -8,7 +8,7 @@ class StockDislikeButton extends Component {
 
   checkForLike(user, stock) {
     for (var i = 0; i < stock.likes.length; i++) {
-      if ( stock.likes[i].user_id == user.id ) {
+      if ( stock.likes[i].user_id === user.id ) {
         return true
       }
     }
@@ -17,7 +17,7 @@ class StockDislikeButton extends Component {
 
   checkForDislike(user, stock) {
     for (var i = 0; i < stock.dislikes.length; i++) {
-      if ( stock.dislikes[i].user_id == user.id ) {
+      if ( stock.dislikes[i].user_id === user.id ) {
         return true
       }
     }

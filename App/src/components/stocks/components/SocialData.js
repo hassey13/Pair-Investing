@@ -7,8 +7,6 @@ import StockDislikeButton from '../buttons/StockDislikeButton'
 import StockBuyButton from '../buttons/StockBuyButton'
 import StockSellButton from '../buttons/StockSellButton'
 
-import Loading from '../../Loading'
-
 class SocialData extends Component {
 
   render() {

@@ -37,6 +37,9 @@ export default function userReducer( state=[], action ){
     case 'UNFOLLOW_USER':
       return Object.assign({}, state, { friends: action.payload } )
 
+    case 'FETCH_OTHER_USER':
+      return Object.assign({}, state, { view: action.payload.data } )
+
     default:
       return state
   }

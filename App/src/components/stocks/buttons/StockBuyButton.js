@@ -1,14 +1,15 @@
 import React, { Component } from 'react'
-import { Button } from 'semantic-ui-react'
 import { connect } from 'react-redux'
+
+import { Button, Popup } from 'semantic-ui-react'
 
 // import { recommendStock } from '../../actions/stockActions'
 
 class StockBuyButton extends Component {
 
   handleBuy(stock_params) {
-    // this.props.recommendStock(stock_params)
     console.log(`I bought ${this.props.stock.ticker}!`)
+    // this.props.recommendStock(stock_params)
   }
 
   render() {
@@ -17,7 +18,11 @@ class StockBuyButton extends Component {
 
     return (
       <div className={'center'}>
-        <Button className={'social-button'} onClick={ this.handleBuy.bind(this,{ticker: stock.ticker, company_name: stock.company_name}) } color='green'>Buy</Button>
+        <Popup
+          trigger={ <Button className={'social-button'} onClick={ this.handleBuy.bind(this,{ticker: stock.ticker, company_name: stock.company_name}) } color='green'>Buy</Button> }
+          content='Coming Soon...'
+        />
+
       </div>
     )
   }

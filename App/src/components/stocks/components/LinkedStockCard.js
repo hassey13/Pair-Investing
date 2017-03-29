@@ -24,26 +24,36 @@ class LinkedStockCard extends Component {
   }
 
   render(){
-    return (
+    const stock = this.props.stock
 
+    if ( this.props.show ) {
+      return (
         <Card>
           <div></div>
           <Icon className='circular unfollow-icon' onClick={this.handleUnfollow} corner name='delete' inverted color='red' />
 
           <Card.Content className={'link'} onClick={this.handleClick.bind(this)}>
-            <Card.Header as='h5'>{this.props.stock.ticker}</Card.Header>
-            <Card.Description >{this.props.stock.company_name}</Card.Description>
+            <Card.Header as='h5'>{stock.ticker}</Card.Header>
+            <Card.Description >{stock.company_name}</Card.Description>
+
+            </Card.Content>
+        </Card>
+      )
+    }
+
+    return (
+        <Card>
+          <div></div>
+
+          <Card.Content className={'link'} onClick={this.handleClick.bind(this)}>
+            <Card.Header as='h5'>{stock.ticker}</Card.Header>
+            <Card.Description >{stock.company_name}</Card.Description>
 
             </Card.Content>
         </Card>
 
-        )}
-        }
-
-const mapStateToProps = (state) => {
-  return {
-    stocks: state.stocks
-  }
+        )
+    }
 }
 
 function mapDispatchToProps(dispatch){
@@ -55,4 +65,4 @@ function mapDispatchToProps(dispatch){
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(LinkedStockCard)
+export default connect( null , mapDispatchToProps )( LinkedStockCard )

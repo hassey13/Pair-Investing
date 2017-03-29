@@ -54,6 +54,7 @@ class LogIn extends Component {
         <Message
           attached
           header='Welcome to Pair Investing!'
+          color='blue'
         />
 
       <Form className='attached fluid segment signup' onSubmit={this.handleSubmit}>

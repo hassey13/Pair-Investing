@@ -21,25 +21,16 @@ class Profile extends Component {
     this.props.fetchOtherUser(username)
   }
 
-  componentWillUpdate() {
-
-  }
-
   render() {
-    const currentUser = this.props.user
-    let user = this.props.viewUser
+    const user = this.props.user
 
-    if ( currentUser.username === user.username ) {
-      user = this.props.user
-    }
-
-    if ( user === undefined || user.length === 0 || currentUser === undefined || currentUser.length === 0 ) return <Loading />
+    if ( user === undefined || user.length === 0 || !('view' in user) ) return <Loading />
 
       return (
         <Grid>
           <Grid.Column width={ 5 }>
-            <IndividualProfileCard currentUser={currentUser} user={ user } />
-            <FollowingList following={ user } />
+            <IndividualProfileCard user={ user } />
+            <FollowingList following={ user.view } />
           </Grid.Column>
 
           <Grid.Column width={ 11 }>
@@ -54,7 +45,6 @@ const mapStateToProps = ( state ) => {
 
   return {
     user: state.user,
-    viewUser: state.viewUser
   }
 }
 

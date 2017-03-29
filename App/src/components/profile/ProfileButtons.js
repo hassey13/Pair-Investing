@@ -1,84 +1,71 @@
 import React, { Component } from 'react'
-import { Button } from 'semantic-ui-react'
 import { connect } from 'react-redux'
 import { browserHistory } from 'react-router'
+
+import { Popup, Button } from 'semantic-ui-react'
 
 import { followUser, unfollowUser } from '../../actions/userActions'
 
 class ProfileButtons extends Component {
-
-  constructor() {
-    super()
-    this.state = {
-      followed: undefined
-    }
-  }
-
-  componentWillMount() {
-    this.checkFollowing(this.props.user, this.props.currentUser)
-  }
-
-  componentWillReceiveProps(nextProps) {
-    this.checkFollowing(nextProps.user, this.props.currentUser)
-  }
 
   handleEdit() {
     browserHistory.push(`/edit`)
   }
 
   handleMessage() {
-    console.log("Sending Message!")
+    console.log("Sending A Beautiful Message!")
   }
 
   handleFollow(username) {
     this.props.followUser(username)
-    this.setState({ followed: true })
   }
 
   handleUnfollow(username) {
     this.props.unfollowUser(username)
-    this.setState({ followed: false })
   }
 
-  checkFollowing(user, currentUser) {
-    if ( currentUser === undefined || currentUser.length === 0 ) return false
+  checkFollowing(user) {
+    if ( !('view' in user ) || user.view.friends.length === 0 ) return false
     let i = 0
-    while ( i < currentUser.friends.length ) {
-      if ( currentUser.friends[i].username === user.username  ) {
-        this.setState({ followed: true })
+    while ( i < user.friends.length ) {
+      if ( user.friends[i].username === user.view.username  ) {
         return true
       }
       i += 1
     }
-    this.setState({ followed: false })
     return false
   }
 
   render() {
     const user = this.props.user
-    const currentUser = this.props.currentUser
 
-    if ( currentUser === undefined || currentUser.length === 0 || user.username === currentUser.username ) {
+    if ( !('view' in user ) || user.username === user.view.username ) {
       return (
         <div className={'center'}>
-          <Button className={'profileButton'} onClick={ this.handleEdit.bind(this, user.username) } color='yellow'>Edit Profile</Button>
+          <Button className={'profileButton'} onClick={ this.handleEdit.bind(this, user.username) } color='yellow'>Edit</Button>
         </div>
       )
     }
 
-    if ( this.state.followed ) {
+    if ( this.checkFollowing(user) ) {
       return (
         <div className={'center'}>
-          <Button className={'profileButton'} onClick={ this.handleMessage.bind(this, user.username) } color='blue'>Message</Button>
-          <Button className={'profileButton'} onClick={ this.handleUnfollow.bind(this, user.username) } color='red'>Unfollow</Button>
+          <Popup
+            trigger={ <Button className={'profileButton'} onClick={ this.handleMessage.bind(this, user.username) } color='blue'>Message</Button> }
+            content='Coming Soon...'
+          />
+          <Button className={'profileButton'} onClick={ this.handleUnfollow.bind(this, user.view.username) } color='red'>Unfollow</Button>
         </div>
       )
     }
 
     return (
       <div className={'center'}>
-        <Button className={'profileButton'} onClick={ this.handleMessage.bind(this, user.username) } color='blue'>Message</Button>
-        <Button className={'profileButton'} onClick={ this.handleFollow.bind(this, user.username) } color='green'>Follow</Button>
+        <Popup
+          trigger={ <Button className={'profileButton'} onClick={ this.handleMessage.bind(this, user.username) } color='blue'>Message</Button> }
+          content='Coming Soon...'
+        />
+        <Button className={'profileButton'} onClick={ this.handleFollow.bind(this, user.view.username) } color='green'>Follow</Button>
       </div>
     )
   }
