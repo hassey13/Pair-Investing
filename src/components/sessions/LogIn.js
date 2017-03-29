@@ -53,7 +53,7 @@ class LogIn extends Component {
       <div className='center login'>
         <Message
           attached
-          header='Welcome to Pair Investing!'
+          header='Welcome to Connected Investing!'
           color='blue'
         />
 
@@ -84,7 +84,7 @@ class LogIn extends Component {
 
       <Message attached='bottom' warning>
         <Icon name='help' />
-        New to Pair Investing?&nbsp;<Link to='/signup'>Sign up here</Link>&nbsp;first.
+        New to Connected Investing?&nbsp;<Link to='/signup'>Sign up here</Link>&nbsp;first.
       </Message>
     </div>
     )

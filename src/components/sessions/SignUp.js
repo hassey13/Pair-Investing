@@ -59,7 +59,7 @@ class SignUp extends Component {
       <div className='center signup'>
         <Message
           attached
-          header='Welcome to Pair Investing! *BETA'
+          header='Welcome to Connected Investing! *BETA'
           content='Fill out the form below to sign-up for a new account.  All fields should be filled out feel free to use fake names ;)'
           color='blue'
         />
