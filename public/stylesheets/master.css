@@ -51,6 +51,10 @@ hr.gradient-hr {
   margin: 0 auto;
 }
 
+.login-input {
+  width: 60%;
+}
+
 /* individual results*/
 /*.padded{
   padding: 1em;

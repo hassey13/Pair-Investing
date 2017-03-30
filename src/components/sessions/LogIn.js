@@ -65,7 +65,7 @@ class LogIn extends Component {
 
         <ErrorMessage error={ error } />
 
-        <div className='inline'>
+        <div className='inline login-input'>
           <Form.Field>
             <label>Email</label>
             <input name='email' onChange={this.handleChange} placeholder='email' />
