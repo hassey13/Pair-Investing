@@ -17,7 +17,13 @@ export default class NavBar extends Component {
     browserHistory.push('/login')
   }
 
+  handleLoginClick() {
+    browserHistory.push('/login')
+  }
 
+  handleSignupClick() {
+    browserHistory.push('/signup')
+  }
 
   render() {
     if(!sessionStorage.jwt){
@@ -25,6 +31,15 @@ export default class NavBar extends Component {
         <Menu secondary attached='top'>
           <Menu.Item name='home'  >
             <Link to='/login'><img id='logo-png' src={require('../../../public/feather.png')} alt='logo'/></Link>
+          </Menu.Item>
+          <Menu.Item position='right' name='Sessions' >
+            <Menu.Item position='left' name='Login' onClick={this.handleLoginClick} >
+            Login
+            </Menu.Item>
+            /
+            <Menu.Item position='right' name='Login' onClick={this.handleSignupClick} >
+            Signup
+            </Menu.Item>
           </Menu.Item>
         </Menu>
       )
