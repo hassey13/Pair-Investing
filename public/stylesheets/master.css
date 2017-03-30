@@ -108,6 +108,12 @@ hr.gradient-hr {
   width: 120px;
   padding: 0 !important;
 }
+.guest-button {
+  height: 20px;
+  width: 40px;
+  padding: 0 0 0 0 !important;
+  margin: 0 0 0 0 !important;
+}
 
 .social-button-follow {
   height: 20px;
