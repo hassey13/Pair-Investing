@@ -1,5 +1,7 @@
 import axios from 'axios'
-import { URL } from './index.js'
+
+// const URL = 'https://connected-investing-api.herokuapp.com/api/v1/'
+const URL = 'http://localhost:4000/api/v1'
 
 axios.defaults.baseURL = URL
 axios.defaults.headers.common['AUTHORIZATION'] = sessionStorage.getItem('jwt')

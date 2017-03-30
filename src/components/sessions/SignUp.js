@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 
 import { Button, Form, Icon, Message } from 'semantic-ui-react'
 
-import { createUser } from '../../actions/userActions'
+import { createUser, login } from '../../actions/userActions'
 
 class SignUp extends Component {
   constructor() {
@@ -41,6 +41,10 @@ class SignUp extends Component {
 
   handleLogIn(){
     browserHistory.push('/login')
+  }
+
+  handleGuestLogIn(params) {
+    this.props.login(params)
   }
 
   render(){
@@ -102,7 +106,7 @@ class SignUp extends Component {
 
         <Message attached='bottom' warning>
           <Icon name='help' />
-          Already signed up?&nbsp;<Link to='/login'>Login here</Link>&nbsp;instead.
+          Already signed up?&nbsp;<Link to='/login'>Login here</Link>&nbsp;instead, or login as a guest <Button className={'guest-button'} onClick={ this.handleGuestLogIn.bind(this,{email: "myguest@connectedinvestments.com", password: "guest"}) } color='twitter'>here</Button>
         </Message>
       </div>
     )
@@ -111,8 +115,12 @@ class SignUp extends Component {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-      createUser: (credentials) => {
+    createUser: (credentials) => {
       let action = createUser(credentials)
+      dispatch(action)
+    },
+    login: (credentials) => {
+      let action = login(credentials)
       dispatch(action)
     }
   }

@@ -39,6 +39,10 @@ class LogIn extends Component {
     browserHistory.push('/signup')
   }
 
+  handleGuestLogIn(params) {
+    this.props.login(params)
+  }
+
   render(){
     if(!!sessionStorage.jwt) {
       browserHistory.push('/')
@@ -84,7 +88,7 @@ class LogIn extends Component {
 
       <Message attached='bottom' warning>
         <Icon name='help' />
-        New to Connected Investing?&nbsp;<Link to='/signup'>Sign up here</Link>&nbsp;first.
+        New to Connected Investing?&nbsp;<Link to='/signup'>Sign up here</Link>&nbsp;first or login as a guest <Button className={'guest-button'} onClick={ this.handleGuestLogIn.bind(this,{email: "myguest@connectedinvestments.com", password: "guest"}) } color='twitter'>here</Button>
       </Message>
     </div>
     )
