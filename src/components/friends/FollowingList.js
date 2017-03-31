@@ -48,7 +48,7 @@ export default class FollowingList extends Component {
 
       if ( following.length === 0 ) {
         return (
-          <div className="following-list inline">
+          <div className="following-list">
             <Card>
               <h5>Following { companyName }</h5>
               <h5>No one is following this stock</h5>
@@ -58,7 +58,7 @@ export default class FollowingList extends Component {
         )
       }
       return (
-        <div className="following-list inline">
+        <div className="following-list">
           <Card>
             <h5>Following { companyName }</h5>
             <List animated verticalAlign='middle'>

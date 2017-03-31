@@ -112,6 +112,10 @@ body {
   cursor: pointer;
 }
 
+.profile-card {
+  margin-bottom: 25px;
+}
+
 @media only screen and (max-width: 850px) {
 
   .profile-container {
@@ -173,8 +177,12 @@ body {
   .profile-main-column {
     display: block;
     margin-top: 50px;
-    margin-left: 0px;
+    margin-left: 10px;
     width: 250px;
+  }
+
+  .ui.card {
+    margin: 0 auto;
   }
 
   .ui.input input {
@@ -321,16 +329,69 @@ body {
   }
 
   table td {
-    width: 100px !important;
+    width: 92px !important;
     font-size: 0.8em;
   }
 }
 
 @media only screen and (max-width: 792px) {
 
-  /*SNAP INTO NEW VIEW*/
+  .stock-left-column {
+    margin-left: 15px;
+  }
 
-  
+  .stock-main-column {
+    margin-left: 0px;
+    width: 450px;
+  }
+
+  .social-data-container {
+    padding: 0px 0px 25px 0px;
+  }
+
+  .social-button-container {
+    padding: 15px 0px 15px 0px;
+  }
+
+  .social-button-container div {
+    padding-left: 5px;
+    padding-right: 5px;
+  }
+}
+
+@media only screen and (max-width: 690px) {
+
+  .stock-left-column {
+    margin-left: 0px;
+    text-align: center;
+    width: 100%;
+  }
+
+  .stock-main-column {
+    text-align: center;
+    margin-left: 0px;
+    width: 100%;
+  }
+
+  .following-list {
+    margin: 0 auto;
+    width: 225px;
+    padding-bottom: 20px;
+  }
+
+  .following-list div {
+    text-align: left;
+  }
+
+  .social-button-container {
+    width: 325px;
+    margin: 0 auto;
+    padding: 15px 0px 0px 0px;
+  }
+
+  .social-button-container div {
+    padding-bottom: 15px;
+  }
 
 }
 
@@ -380,6 +441,10 @@ table td {
 
 #logo-png {
     width: 2.5em;
+}
+
+#root {
+  width: 100%;
 }
 
 /*OVERWRITE SEMANTIC UI STYLES */

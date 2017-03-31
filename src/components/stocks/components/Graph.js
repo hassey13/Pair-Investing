@@ -83,7 +83,16 @@ class Graph extends Component {
 
   render() {
 
-    if ( window.innerWidth <= 550 ) {
+    if ( window.innerWidth <= 350 ) {
+      return (
+        <div className='center inline'>
+          <canvas id="myChart" width="300" height="150"></canvas>
+          <div id="chartjs-tooltip"></div>
+        </div>
+      )
+    }
+
+    if ( window.innerWidth <= 792 ) {
       return (
         <div className='center inline'>
           <canvas id="myChart" width="350" height="150"></canvas>

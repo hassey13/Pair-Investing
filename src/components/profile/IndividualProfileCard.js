@@ -33,19 +33,21 @@ class IndividualProfileCard extends Component {
     if (user.bio === undefined ) user.bio = `${ user.first_name } is an awesome person.`
 
     return (
-      <Card className="card">
-        <Image src='http://semantic-ui.com/images/avatar/large/elliot.jpg' />
-          <Card.Content>
-            <Card.Header>{`${ user.first_name } ${ user.last_name }`}</Card.Header>
-            <Card.Meta>{ user.username }</Card.Meta>
-            <Card.Description>{ user.bio }</Card.Description>
-          </Card.Content>
-          <Card.Content extra>
-
-              <ProfileButtons user={ loggedInUser } />
-
+      <div className="profile-card">
+        <Card className="card">
+          <Image src='http://semantic-ui.com/images/avatar/large/elliot.jpg' />
+            <Card.Content>
+              <Card.Header>{`${ user.first_name } ${ user.last_name }`}</Card.Header>
+              <Card.Meta>{ user.username }</Card.Meta>
+              <Card.Description>{ user.bio }</Card.Description>
             </Card.Content>
-      </Card>
+            <Card.Content extra>
+
+                <ProfileButtons user={ loggedInUser } />
+
+              </Card.Content>
+        </Card>
+      </div>
     )
   }
 }
