@@ -19,7 +19,6 @@ class Home extends Component {
 
   render() {
     const user = this.props.user
-    console.log(user)
 
     if ( user === undefined || user.length === 0 ) return <Loading />
 
