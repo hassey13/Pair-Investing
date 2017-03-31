@@ -27,7 +27,7 @@ class StockNews extends Component {
     if ( stock === undefined || stock.length === 0 || !('news' in stock) ) return <Loading />
 
     return (
-      <div>
+      <div className='stock-news-container'>
         <h3>Recent Headlines</h3>
         { stock.news.map( ( story, i ) => <LinkedNewsCard key={i} data={ story } /> ) }
       </div>

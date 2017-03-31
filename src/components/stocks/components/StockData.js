@@ -41,41 +41,40 @@ class StockData extends Component {
         marketCap = "< 1 Mil"
       }
       return (
-        <div className='center'>
-        <h3>Summary</h3>
-        <br></br>
-        <table className='inline'>
-        <tbody>
-        <tr>
-        <td className='left'>Open:</td>
-        <td className='right'>{ this.props.stock.data[0].open }</td>
-        </tr>
-        <tr>
-        <td className='left'>Close:</td>
-        <td className='right'>{ this.props.stock.data[0].close }</td>
-        </tr>
-        <tr>
-        <td className='left'>Market Cap:</td>
-        <td className='right'>{ marketCap }</td>
-        </tr>
-        </tbody>
-        </table>
-        <table className='inline'>
-        <tbody>
-        <tr>
-        <td className='left'>52 Week Low:</td>
-        <td className='right'>{ this.props.stock.data[0].low_52_week }</td>
-        </tr>
-        <tr>
-        <td className='left'>52 Week High:</td>
-        <td className='right'>{ this.props.stock.data[0].high_52_week }</td>
-        </tr>
-        <tr>
-        <td className='left'>Dividend/ Yield:</td>
-        <td className='right'>{ `${dividendyield} %` }</td>
-        </tr>
-        </tbody>
-        </table>
+        <div className='stock-data-container'>
+          <h3>Summary</h3>
+          <table className='inline'>
+            <tbody>
+              <tr>
+                <td className='left'>Open:</td>
+                <td className='right'>{ this.props.stock.data[0].open }</td>
+              </tr>
+              <tr>
+                <td className='left'>Close:</td>
+                <td className='right'>{ this.props.stock.data[0].close }</td>
+              </tr>
+              <tr>
+                <td className='left'>Market Cap:</td>
+                <td className='right'>{ marketCap }</td>
+              </tr>
+              </tbody>
+              </table>
+              <table className='inline'>
+              <tbody>
+              <tr>
+                <td className='left'>52 Week Low:</td>
+                <td className='right'>{ this.props.stock.data[0].low_52_week }</td>
+              </tr>
+              <tr>
+                <td className='left'>52 Week High:</td>
+                <td className='right'>{ this.props.stock.data[0].high_52_week }</td>
+              </tr>
+              <tr>
+                <td className='left'>Dividend/ Yield:</td>
+                <td className='right'>{ `${dividendyield} %` }</td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       )
     }

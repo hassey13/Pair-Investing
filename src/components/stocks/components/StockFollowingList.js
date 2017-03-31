@@ -10,7 +10,7 @@ export default class StockFollowingList extends Component {
 
     if ( user.stocks.length === 0 ) {
       return (
-        <div className="following-list inline">
+        <div className="following-list">
           <Card>
             <h5>Stocks You Follow</h5>
             <h5>You dont follow any stocks</h5>
@@ -21,7 +21,7 @@ export default class StockFollowingList extends Component {
     }
 
     return (
-      <div className="following-list inline">
+      <div className="following-list">
         <Card>
           <h5>Stocks You Follow</h5>
           <List animated verticalAlign='middle'>

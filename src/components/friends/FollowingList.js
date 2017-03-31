@@ -39,11 +39,18 @@ export default class FollowingList extends Component {
     }
 
     if ( 'users' in following ) {
+
+      let companyName = following.company_name
+
+      if ( companyName.length > 15 ) {
+        companyName = following.ticker
+      }
+
       if ( following.length === 0 ) {
         return (
           <div className="following-list inline">
             <Card>
-              <h5>Following { following.company_name }</h5>
+              <h5>Following { companyName }</h5>
               <h5>No one is following this stock</h5>
               <br></br>
             </Card>
@@ -53,7 +60,7 @@ export default class FollowingList extends Component {
       return (
         <div className="following-list inline">
           <Card>
-            <h5>Following { following.company_name }</h5>
+            <h5>Following { companyName }</h5>
             <List animated verticalAlign='middle'>
               { following.users.map( ( following, i ) => <LinkedFriendCard key={i} following={ following } /> ) }
             </List>

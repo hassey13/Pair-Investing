@@ -22,6 +22,11 @@ import '../../../public/stylesheets/master.css'
 class StockShow extends Component {
 
   componentWillMount() {
+
+    if ( !( 'user' in this.props ) || this.props.user.length === 0 ) {
+      this.props.fetchUser()
+    }
+
     var stock = this.props.params.stock
     this.props.fetchStock(stock)
   }
@@ -33,28 +38,30 @@ class StockShow extends Component {
     if ( stock === undefined || stock.length === 0 || user === undefined || user.length === 0 ) return <Loading />
 
     return (
-      <div>
-        <StockHeader stock={stock}/>
-        <br/>
-        <StockFollowButton stock={ stock } user={ user } />
-        <br/>
+      <div className='stock-container'>
+        <StockHeader stock={stock} user={ user } />
         <SocialData user={ user } stock={ stock }/>
-        <div className='padding'></div>
 
-        <div className='inline following-list'>
+        <div className='stock-left-column'>
           <FollowingList following={ stock } />
-          <div className='padding'></div>
+
           <StockFollowingList user={ user } />
         </div>
 
-        <div className='inline'>
+        <div className='stock-main-column'>
           <StockData ticker={ stock.ticker } />
-          <div className='padding'></div>
+
           <StockGraph ticker={ stock.ticker } />
-          <div className='padding'></div>
+
           <StockNews ticker={ stock.ticker } />
-          <div className='padding'></div>
+
           <StockComments stock={ stock } />
+        </div>
+
+        <div className='inline following-list'>
+        </div>
+
+        <div className='inline'>
         </div>
 
       </div>

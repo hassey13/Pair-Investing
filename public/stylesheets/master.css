@@ -28,9 +28,22 @@ hr.gradient-hr {
   text-align: center;
 }
 
-.body-container {
-  margin-top: 2em;
+.left {
+  text-align: left;
 }
+
+.right {
+  text-align: right;
+}
+
+/* *************** MISC COMPONENTS  ******************* */
+
+.loading {
+  margin-top: 50px;
+  margin-left: 25px;
+}
+
+/* ***************SIGN-UP PAGE  ******************* */
 
 .signup {
   text-align: center;
@@ -48,60 +61,6 @@ hr.gradient-hr {
   width: 60%;
 }
 
-.stock-header {
-  float:left;
-}
-
-.card{
-  position: relative;
-}
-
-.unfollow-icon {
-  margin-left: 200px !important;
-  margin-top: 3px !important;
-}
-
-.unfollow-icon:hover {
-  cursor: pointer;
-}
-
-.social-button-container {
-  padding: 15px;
-  text-align: center;
-}
-
-.social-button-container div {
-  display: inline-block;
-  padding-left: 20px;
-  padding-right: 20px;
-}
-
-.social-button {
-  height: 36px;
-  width: 120px;
-  padding: 0 !important;
-}
-
-.social-button-follow {
-  height: 20px;
-  width: 90px;
-  padding: 0 !important;
-}
-
-.social-button-like {
-  width: 160px;
-}
-
-.profile-button {
-  padding: 0 0 0 0 !important;
-  width: 75px;
-  height: 30px;
-}
-
-.follow-button {
-  float: right;
-}
-
 .guest-button {
   height: 20px;
   width: 40px;
@@ -109,21 +68,7 @@ hr.gradient-hr {
   margin: 0 0 0 0 !important;
 }
 
-.following-list {
-  vertical-align: top;
-}
 
-.following-list h5{
-  text-align: center;
-}
-
-.left {
-  text-align: left;
-}
-
-.right {
-  text-align: right;
-}
 
 /* ***************PROFILE/ HOME PAGE  ******************* */
 
@@ -146,6 +91,25 @@ body {
   float: left;
   margin-top: 50px;
   width: 500px;
+}
+
+.profile-button {
+  padding: 0 0 0 0 !important;
+  width: 75px;
+  height: 30px;
+}
+
+.follow-button {
+  float: right;
+}
+
+.unfollow-icon {
+  margin-left: 200px !important;
+  margin-top: 3px !important;
+}
+
+.unfollow-icon:hover {
+  cursor: pointer;
 }
 
 @media only screen and (max-width: 850px) {
@@ -192,12 +156,6 @@ body {
     font-size: 0.8em;
   }
 
-  .ui.menu:not(.vertical) .right.item, .ui.menu:not(.vertical) .right.menu {
-    margin-left: 0 !important;
-}
-
-
-
 }
 
 @media only screen and (max-width: 400px) {
@@ -232,8 +190,149 @@ body {
     left: -75px;
   }
 
+  .ui.menu:not(.vertical) .right.item, .ui.menu:not(.vertical) .right.menu {
+    margin-left: 0 !important;
+  }
+
 }
 
+/* ***************STOCK SHOW PAGE  ******************* */
+
+  .stock-container {
+    margin: 0 auto;
+    width: 1000px;
+  }
+
+  .stock-header {
+    padding: 25px;
+  }
+
+  .stock-left-column {
+    float: left;
+    width: 225px;
+    margin-left: 25px;
+  }
+
+  .stock-main-column {
+    float: left;
+    margin-left: 75px;
+    width: 615px;
+  }
+
+  .social-data-container {
+    padding: 0px 25px 25px 25px;
+  }
+
+  .stock-data-container {
+    text-align: center;
+    padding-bottom: 25px;
+  }
+
+  .stock-news-container {
+    padding-top: 25px;
+  }
+
+  .stock-comments-container {
+    padding-top: 25px;
+  }
+
+  .social-button-container {
+    padding: 15px;
+    text-align: center;
+  }
+
+  .following-list {
+    margin-bottom: 25px;
+  }
+
+  .following-list h5{
+    text-align: center;
+  }
+
+  .social-button-container div {
+    display: inline-block;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .social-button {
+    height: 36px;
+    width: 120px;
+    padding: 0 !important;
+  }
+
+  .social-button-follow {
+    height: 20px;
+    width: 90px;
+    padding: 0 !important;
+  }
+
+  .social-button-like {
+    width: 160px;
+  }
+
+@media only screen and (max-width: 1017px) {
+
+  .stock-container {
+    margin: 0 0 0 0;
+    width: 100%;
+  }
+
+  .stock-main-column {
+    text-align: center;
+    width: 525px;
+    margin-left: 0px;
+  }
+
+  .stock-data-container {
+    text-align: center;
+    padding-bottom: 25px;
+  }
+
+  .social-button {
+    height: 25px;
+    width: 80px;
+    font-size: 0.8em !important;
+    padding: 0 !important;
+  }
+
+  .social-button-like {
+    height: 25px;
+    width: 100px;
+    font-size: 0.9em !important;
+    padding: 0 !important;
+  }
+
+  table {
+    margin: 0;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  table caption {
+    font-size: 1em;
+    margin: 0 0 0 0;
+  }
+
+  table tr {
+    background: #fff;
+    border-bottom: 1px solid #ddd;
+    padding: .35em;
+  }
+
+  table td {
+    width: 100px !important;
+    font-size: 0.8em;
+  }
+}
+
+@media only screen and (max-width: 792px) {
+
+  /*SNAP INTO NEW VIEW*/
+
+  
+
+}
 
 
 table {
@@ -287,6 +386,10 @@ table td {
 
 .body-container {
   margin-top: 1em !important;
+}
+
+.card{
+  position: relative;
 }
 
 .ui.card>.content, .ui.cards>.card>.content {

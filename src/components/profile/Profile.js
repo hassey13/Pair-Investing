@@ -34,20 +34,20 @@ class Profile extends Component {
 
     if ( user === undefined || user.length === 0 || !('view' in user) ) return <Loading />
 
-      return (
-        <Grid>
-          <Grid.Column width={ 5 }>
-            <IndividualProfileCard user={ user } />
-            <FollowingList following={ user.view } />
-          </Grid.Column>
+    return (
+      <div className='profile-container'>
+        <div className='profile-left-column'>
+          <IndividualProfileCard user={ user } />
+          <FollowingList following={ user.v }/>
+        </div>
 
-          <Grid.Column width={ 11 }>
-            <UserStocks user={ user }/>
-          </Grid.Column >
-        </Grid>
-      )
-    }
+        <div className='profile-main-column'>
+          <UserStocks user={ user } />
+        </div >
+      </div>
+    )
   }
+}
 
 const mapStateToProps = ( state ) => {
 

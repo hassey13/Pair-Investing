@@ -70,7 +70,6 @@ class StockGraph extends Component {
       prices = this.state.prices
     }
 
-
     if ( 'change' in this.state && this.state.change ) {
       return (
         <div className='center'>
@@ -83,7 +82,7 @@ class StockGraph extends Component {
     }
 
     return (
-      <div className='center'>
+      <div className='graph-container center'>
         <Graph prices={ { labels: labels, price: prices } } />
         <br/>
         <Button className={'social-button'} onClick={ this.handleClick.bind(this, "change") } color='twitter'>Change Timeline</Button>

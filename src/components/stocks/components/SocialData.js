@@ -14,7 +14,7 @@ class SocialData extends Component {
     const user = this.props.user
 
     return (
-      <div>
+      <div className='social-data-container'>
         <hr className='gradient-hr' />
         <div className='social-button-container'>
           <StockRecommendButton stock={ stock } />

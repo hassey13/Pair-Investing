@@ -1,26 +1,20 @@
 import React, { Component } from 'react'
-// import { connect } from 'react-redux'
-
-import Loading from '../../Loading'
-
-// import { Card } from 'semantic-ui-react'
+import StockFollowButton from '../buttons/StockFollowButton'
 
 class StockHeader extends Component {
 
   render() {
     const stock = this.props.stock
-
-    if ( stock === undefined || stock.length === 0 ) return <Loading />
+    const user = this.props.user
 
     return (
-      <div>
+      <div className='stock-header'>
         <h1>{stock.company_name}</h1>
-        <p>Symbol: {stock.ticker}</p>
+        <h5>Symbol: {stock.ticker}</h5>
+        <StockFollowButton stock={ stock } user={ user } />
       </div>
     )
   }
 }
-
-
 
 export default StockHeader

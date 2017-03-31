@@ -33,23 +33,8 @@ class Home extends Component {
 
         <div className='profile-main-column'>
           <UserStocks user={ user } />
-          <News user={ user } />
         </div >
       </div>
-    )
-
-    return (
-      <Grid>
-        <Grid.Column width={ 5 }>
-          <IndividualProfileCard user={ user } />
-          <FollowingList following={ user }/>
-        </Grid.Column>
-
-        <Grid.Column width={ 11 }>
-          <UserStocks user={ user } />
-          <News user={ user } />
-        </Grid.Column >
-      </Grid>
     )
   }
 }
