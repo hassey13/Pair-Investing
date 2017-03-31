@@ -40,6 +40,13 @@ export default function userReducer( state=[], action ){
     case 'FETCH_OTHER_USER':
       return Object.assign({}, state, { view: action.payload.data } )
 
+    case 'REMOVE_VIEW_USER':
+      return Object.keys(state).filter(key => key !== 'view')
+        .reduce((result, current) => {
+          result[current] = state[current]
+          return result
+        }, {})
+
     default:
       return state
   }

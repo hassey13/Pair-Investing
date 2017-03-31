@@ -24,7 +24,6 @@ class StockShow extends Component {
   componentWillMount() {
     var stock = this.props.params.stock
     this.props.fetchStock(stock)
-    this.props.fetchUser()
   }
 
   render() {

@@ -4,6 +4,7 @@ export const CREATE_USER = 'CREATE_USER'
 export const LOGIN_USER = 'LOGIN_USER'
 export const FETCH_USER = 'FETCH_USER'
 export const FETCH_OTHER_USER = 'FETCH_OTHER_USER'
+export const REMOVE_VIEW_USER = 'REMOVE_VIEW_USER'
 export const FOLLOW_USER = 'FOLLOW_USER'
 export const UNFOLLOW_USER = 'UNFOLLOW_USER'
 
@@ -29,6 +30,14 @@ export const fetchOtherUser = (username) => {
   return {
     type: FETCH_OTHER_USER,
     payload: response
+  }
+}
+
+export const removeViewUser = (username) => {
+
+  return {
+    type: REMOVE_VIEW_USER,
+    payload: "Nada!"
   }
 }
 

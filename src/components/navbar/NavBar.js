@@ -33,11 +33,11 @@ export default class NavBar extends Component {
             <Link to='/login'><img id='logo-png' src={require('../../../public/feather.png')} alt='logo'/></Link>
           </Menu.Item>
           <Menu.Item position='right' name='Sessions' >
-            <Menu.Item position='left' name='Login' onClick={this.handleLoginClick} >
+            <Menu.Item name='Login' onClick={this.handleLoginClick} >
             Login
             </Menu.Item>
             /
-            <Menu.Item position='right' name='Login' onClick={this.handleSignupClick} >
+            <Menu.Item name='Login' onClick={this.handleSignupClick} >
             Signup
             </Menu.Item>
           </Menu.Item>

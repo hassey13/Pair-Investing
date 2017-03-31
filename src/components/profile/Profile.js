@@ -7,7 +7,7 @@ import FollowingList from '../friends/FollowingList'
 
 import Loading from '../Loading'
 
-import { fetchUser, fetchOtherUser } from '../../actions/userActions'
+import { fetchUser, fetchOtherUser, removeViewUser } from '../../actions/userActions'
 
 import { Grid } from 'semantic-ui-react'
 
@@ -17,8 +17,16 @@ class Profile extends Component {
 
   componentWillMount() {
     let username = this.props.params.username
-    this.props.fetchUser()
+
+    if ( !( 'user' in this.props ) || this.props.user.length === 0 ) {
+      this.props.fetchUser()
+    }
+
     this.props.fetchOtherUser(username)
+  }
+
+  componentWillUnmount() {
+    this.props.removeViewUser()
   }
 
   render() {
@@ -57,6 +65,10 @@ const mapDispatchToProps = ( dispatch ) => {
     },
     fetchOtherUser: function(username){
       let action = fetchOtherUser(username)
+      dispatch( action )
+    },
+    removeViewUser: function(){
+      let action = removeViewUser()
       dispatch( action )
     },
   }

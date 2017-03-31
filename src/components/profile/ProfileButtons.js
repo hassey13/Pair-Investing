@@ -42,7 +42,7 @@ class ProfileButtons extends Component {
     if ( !('view' in user ) || user.username === user.view.username ) {
       return (
         <div className={'center'}>
-          <Button className={'profileButton'} onClick={ this.handleEdit.bind(this, user.username) } color='yellow'>Edit</Button>
+          <Button className={'profile-button'} onClick={ this.handleEdit.bind(this, user.username) } color='yellow'>Edit</Button>
         </div>
       )
     }
@@ -51,10 +51,10 @@ class ProfileButtons extends Component {
       return (
         <div className={'center'}>
           <Popup
-            trigger={ <Button className={'profileButton'} onClick={ this.handleMessage.bind(this, user.username) } color='blue'>Message</Button> }
+            trigger={ <Button className={'profile-button'} onClick={ this.handleMessage.bind(this, user.username) } color='blue'>Message</Button> }
             content='Coming Soon...'
           />
-          <Button className={'profileButton'} onClick={ this.handleUnfollow.bind(this, user.view.username) } color='red'>Unfollow</Button>
+          <Button className={'profile-button'} onClick={ this.handleUnfollow.bind(this, user.view.username) } color='red'>Unfollow</Button>
         </div>
       )
     }
@@ -62,10 +62,10 @@ class ProfileButtons extends Component {
     return (
       <div className={'center'}>
         <Popup
-          trigger={ <Button className={'profileButton'} onClick={ this.handleMessage.bind(this, user.username) } color='blue'>Message</Button> }
+          trigger={ <Button className={'profile-button'} onClick={ this.handleMessage.bind(this, user.username) } color='blue'>Message</Button> }
           content='Coming Soon...'
         />
-        <Button className={'profileButton'} onClick={ this.handleFollow.bind(this, user.view.username) } color='green'>Follow</Button>
+        <Button className={'profile-button'} onClick={ this.handleFollow.bind(this, user.view.username) } color='green'>Follow</Button>
       </div>
     )
   }

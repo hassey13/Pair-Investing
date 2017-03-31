@@ -22,7 +22,7 @@ class UserStocks extends Component {
       return (
         <div>
           <h3>Followed Stocks</h3>
-          <Card.Group itemsPerRow={3}>
+          <Card.Group>
             { user.view.stocks.map( ( stock, i ) => <LinkedStockCard key={i} stock={ stock } show={ show }/> ) }
           </Card.Group>
         </div>
@@ -33,7 +33,7 @@ class UserStocks extends Component {
     return (
       <div>
         <h3>Followed Stocks</h3>
-        <Card.Group itemsPerRow={3}>
+        <Card.Group>
           { user.stocks.map( ( stock, i ) => <LinkedStockCard key={i} stock={ stock } show={ this.sameUser(user) }/> ) }
         </Card.Group>
       </div>
