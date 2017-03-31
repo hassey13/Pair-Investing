@@ -14,13 +14,12 @@ import Loading from '../Loading'
 class Home extends Component {
 
   componentWillMount(){
-    if ( !( 'user' in this.props ) || this.props.user.length === 0 ) {
-      this.props.fetchUser()
-    }
+    this.props.fetchUser()
   }
 
   render() {
     const user = this.props.user
+    console.log(user)
 
     if ( user === undefined || user.length === 0 ) return <Loading />
 

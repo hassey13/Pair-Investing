@@ -257,6 +257,14 @@ body {
     text-align: center;
   }
 
+  .friends-following-list {
+    margin-bottom: 25px;
+  }
+
+  .friends-following-list h5{
+    text-align: center;
+  }
+
   .social-button-container div {
     display: inline-block;
     padding-left: 20px;
@@ -380,6 +388,15 @@ body {
   }
 
   .following-list div {
+    text-align: left;
+  }
+
+  .friends-following-list {
+    width: 250px;
+    padding-bottom: 20px;
+  }
+
+  .friends-following-list div {
     text-align: left;
   }
 

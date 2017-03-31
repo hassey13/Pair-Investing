@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
-import FollowingList from '../friends/FollowingList'
 
 import StockHeader from './components/StockHeader'
 import StockData from './components/StockData'
@@ -9,6 +8,7 @@ import SocialData from './components/SocialData'
 import StockGraph from './components/StockGraph'
 import StockNews from './components/StockNews'
 import StockComments from './components/StockComments'
+import FollowingList from './components/FollowingList'
 import Loading from '../Loading'
 
 import { fetchUser } from '../../actions/userActions'

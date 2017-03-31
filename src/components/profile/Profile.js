@@ -31,6 +31,7 @@ class Profile extends Component {
 
   render() {
     const user = this.props.user
+    console.log(user)
 
     if ( user === undefined || user.length === 0 || !('view' in user) ) return <Loading />
 
@@ -38,7 +39,7 @@ class Profile extends Component {
       <div className='profile-container'>
         <div className='profile-left-column'>
           <IndividualProfileCard user={ user } />
-          <FollowingList following={ user.v }/>
+          <FollowingList following={ user.view }/>
         </div>
 
         <div className='profile-main-column'>
